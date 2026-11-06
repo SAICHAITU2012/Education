@@ -35,14 +35,14 @@ reliability/efficiency · **S3** hygiene.
 ## 2. Prioritised backlog
 
 ### P0 — essential (first)
-- [ ] Git baseline: init, private remote, branch protection, PR template *(TD-01)*
-- [ ] Fix TD-02 (`lastLevelUp` race) + add a concurrency regression test
-- [ ] Fix TD-12 doc rot (README, 04-roadmap)
-- [ ] CI: typecheck → vitest → calibration `--gate` → build → image
-- [ ] Security hardening: helmet/CSP, CORS allowlist, trust proxy, secrets check *(TD-05, TD-09)*
-- [ ] Dockerfile + compose; staging deploy; nightly backup + one restore drill
-- [ ] Structured logging (pino), error tracking (Sentry) *(TD-14)*
-- [ ] E2E smoke test: one full rehearsal on staging *(TD-19)*
+- [x] Git baseline: init, private remote, branch protection, PR template *(TD-01 — local history done; remote push + protection pending, needs `gh` auth)*
+- [x] Fix TD-02 (`lastLevelUp` race) + add a concurrency regression test — `944be00`
+- [x] Fix TD-12 doc rot (README, 04-roadmap) — `e4c9bf9`
+- [x] CI: typecheck → vitest → calibration `--gate` → build — `3f509d7` (first CI run lands with the first push)
+- [x] Security hardening: CSP/headers, CORS allowlist, trust proxy *(TD-05, TD-09)* — `dad08b9`
+- [x] Dockerfile + compose, smoke-tested; restore drill executed *(nightly cron + hosted staging move to M2/deploy step)* — `2e7a901`
+- [x] Structured logging *(TD-14)* — `743a02d` (Sentry/error tracking remains M2)
+- [ ] E2E smoke test: one full rehearsal on staging *(TD-19 — needs the staging host; container smoke covers the boot path meanwhile)*
 
 ### P1 — important (next)
 - [ ] Postgres schema + migrations + storage interface + JSON importer *(TD-03, TD-18)*
