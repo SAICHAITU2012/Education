@@ -21,6 +21,7 @@ import {
   turnRequestSchema,
 } from './http.js';
 import { Orchestrator } from './orchestrator.js';
+import { applyTrustProxy, allowedOriginsFromEnv, corsDelegate, securityHeaders } from './security.js';
 import type { Store } from './store.js';
 import type { LoadedPack } from '../content/schema.js';
 import type { LlmRuntime } from '../llm/index.js';
@@ -30,7 +31,12 @@ export interface AppDeps {
   content: LoadedPack;
   llm: LlmRuntime;
   now?: () => Date;
+  /** CORS allowlist override (tests); defaults to ALLOWED_ORIGINS then the dev origins. */
+  allowedOrigins?: string[];
 }
+
+/** Vite dev server origins; production sets ALLOWED_ORIGINS to its own domain. */
+const DEV_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:5173'];
 
 /**
  * Express app factory. Exported separately from the listener so tests can
@@ -42,13 +48,15 @@ export function createApp(deps: AppDeps): Express {
   const app = express();
 
   app.disable('x-powered-by');
+  applyTrustProxy(app);
+  app.use(securityHeaders());
   app.use((req, res, next) => {
     const id = randomUUID();
     res.locals.requestId = id;
     res.setHeader('x-request-id', id);
     next();
   });
-  app.use(cors({ origin: true, methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] }));
+  app.use(cors(corsDelegate(deps.allowedOrigins ?? allowedOriginsFromEnv(DEV_ORIGINS))));
   app.use(express.json({ limit: '512kb' }));
   app.use(requestLogger);
   app.use('/api', rateLimit({ windowMs: 60_000, max: 180, name: 'API' }));
