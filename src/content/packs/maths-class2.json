@@ -1,0 +1,318 @@
+[
+  {
+    "id": "maths-c2-l1-zero-tens",
+    "version": "1.0.0",
+    "pack": "maths-class2",
+    "level": 1,
+    "language": "hi",
+    "curriculum": {
+      "class": 2,
+      "subject": "maths",
+      "topic": "place value with zero",
+      "ncertRef": "Maths Magic 2, Ch. 2 (Counting in Groups)"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "The zero in 305",
+      "hi": "305 का शून्य"
+    },
+    "studentPersona": {
+      "name": "Kabir",
+      "age": 7,
+      "traits": ["fast reader", "skips small details"],
+      "opening": {
+        "en": "Ma'am, 305 is just 35, right? The zero means nothing, so we can ignore it.",
+        "hi": "मैडम, 305 तो 35 ही है न? शून्य का कोई मतलब नहीं, इसे छोड़ दें।"
+      },
+      "misconception": {
+        "id": "zero-can-be-dropped",
+        "belief": {
+          "en": "A zero inside a number can be removed without changing its value.",
+          "hi": "संख्या के बीच का शून्य हटा दें तो भी मान नहीं बदलता।"
+        },
+        "resistance": [
+          {
+            "en": "But zero is nothing! Adding nothing should not change anything.",
+            "hi": "पर शून्य तो कुछ नहीं है! कुछ नहीं जोड़ने से क्या बदलेगा?"
+          },
+          {
+            "en": "In 35 there is no zero and it still looks like a number. Why is 305 different?",
+            "hi": "35 में शून्य नहीं है और वह भी संख्या है। 305 अलग क्यों है?"
+          }
+        ],
+        "concession": {
+          "en": "So the zero holds the tens place empty... without it, 305 becomes 35. The zero is a placeholder!",
+          "hi": "तो शून्य दहाई का स्थान खाली रखता है... इसके बिना 305, 35 हो जाता है। शून्य जगह पकड़ता है!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["three-digit numbers", "hundreds tens ones", "zero as placeholder"],
+        "mustNotReveal": ["that 305 has zero tens", "that zero holds a place"],
+        "exitCondition": "Student explains that removing the zero changes the value because it holds the tens place."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कहाँ", "kahan", "कितने", "kitne", "why", "how"],
+      "surfaceMarkers": ["तुमने", "tumne", "सोचो", "socho", "दिखाओ", "dikhao", "बताओ", "batao"],
+      "correctMarkers": ["दहाई", "dahai", "tens", "तीन सौ", "three hundred", "जगह", "place", "शून्य दहाई", "zero tens"],
+      "exampleWords": ["रुपये", "rupees", "गोली", "marble", "डिब्बा", "box", "खाना", "slot"],
+      "jargonBlacklist": ["positional notation", "place value system", "स्थानीय मान पद्धति"],
+      "wrongFactMarkers": ["305 तो 35", "305 is 35", "शून्य छोड़", "drop the zero"],
+      "correctFactMarkers": ["305 में शून्य दहाई", "305 has zero tens", "शून्य जगह", "zero placeholder", "तीन सौ पाँच", "three hundred five"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Show 305 as 3 hundreds, 0 tens and 5 ones — the zero cannot be dropped.",
+          "hi": "305 को 3 सैकड़ा, 0 दहाई, 5 इकाई दिखाएँ — शून्य नहीं हटा सकते।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Use a hundreds-tens-ones table so the empty tens column is visible.",
+          "hi": "सैकड़ा-दहाई-इकाई तालिका दिखाएँ ताकि दहाई का खाली खाना दिखे।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "maths-c2-l2-sub-borrow",
+    "version": "1.0.0",
+    "pack": "maths-class2",
+    "level": 2,
+    "language": "hi",
+    "curriculum": {
+      "class": 2,
+      "subject": "maths",
+      "topic": "subtraction with borrowing",
+      "ncertRef": "Maths Magic 2, Ch. 4 (Subtraction)"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "Forty-two take away twenty-seven",
+      "hi": "बयालीस में से सत्ताईस"
+    },
+    "studentPersona": {
+      "name": "Meher",
+      "age": 7,
+      "traits": ["careful with columns", "afraid of mistakes"],
+      "opening": {
+        "en": "Ma'am, 42 minus 27... I did 7 minus 2 is 5, and 4 minus 2 is 2. So the answer is 25?",
+        "hi": "मैडम, 42 में से 27... मैंने 7 में से 2 किया तो 5, और 4 में से 2 किया तो 2। तो जवाब 25?"
+      },
+      "misconception": {
+        "id": "subtract-smaller-from-larger-digits",
+        "belief": {
+          "en": "In each column, always subtract the smaller digit from the larger one.",
+          "hi": "हर खाने में छोटे अंक को बड़े अंक से घटा दें।"
+        },
+        "resistance": [
+          {
+            "en": "But 2 minus 7 is not possible, so I swapped them. That is what we do, right?",
+            "hi": "पर 2 में से 7 नहीं होता, तो मैंने बदल दिया। ऐसे ही करते हैं न?"
+          },
+          {
+            "en": "If I borrow, the numbers change and I get confused.",
+            "hi": "अगर उधार लूँ, तो संख्याएँ बदल जाती हैं और मैं उलझ जाती हूँ।"
+          }
+        ],
+        "concession": {
+          "en": "So I borrow one ten from the 4... 12 minus 7 is 5, and 3 minus 2 is 1. Fifteen!",
+          "hi": "तो मैं 4 से एक दहाई उधार लेती हूँ... 12 में से 7 है 5, और 3 में से 2 है 1। पंद्रह!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["two-digit subtraction", "borrowing", "tens and ones"],
+        "mustNotReveal": ["the answer fifteen", "the borrowing procedure"],
+        "exitCondition": "Student borrows a ten and reaches fifteen, explaining each column."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "क्यों", "kyun", "why", "how"],
+      "surfaceMarkers": ["तुमने", "tumne", "दिखाओ", "dikhao", "सोचो", "socho", "बताओ", "batao"],
+      "correctMarkers": ["उधार", "udhaar", "borrow", "दहाई तोड़", "break a ten", "12 में से 7", "12 minus 7", "15", "पंद्रह"],
+      "exampleWords": ["गोली", "marble", "बंडल", "bundle", "सिक्के", "coins", "डिब्बा", "box"],
+      "jargonBlacklist": ["regrouping algorithm", "decomposition method", "पुनर्समूहन"],
+      "wrongFactMarkers": ["जवाब 25", "answer is 25", "7 में से 2", "7 minus 2"],
+      "correctFactMarkers": ["जवाब 15", "answer is 15", "12 में से 7", "12 minus 7", "उधार ले"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Correct the answer to 15 and model borrowing one ten from the four tens.",
+          "hi": "जवाब 15 सही करें और चार दहाई में से एक दहाई उधार लेकर दिखाएँ।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Break a bundle of ten into ten ones so she sees why 12 minus 7 works.",
+          "hi": "दस की गड्डी को दस इकाइयों में तोड़ें ताकि 12 में से 7 क्यों होता है दिखे।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "maths-c2-l2-mult-repeated",
+    "version": "1.0.0",
+    "pack": "maths-class2",
+    "level": 2,
+    "language": "hi",
+    "curriculum": {
+      "class": 2,
+      "subject": "maths",
+      "topic": "multiplication as repeated addition",
+      "ncertRef": "Maths Magic 2, Ch. 8 (Grouping and Sharing)"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "Four groups of three",
+      "hi": "तीन-तीन के चार समूह"
+    },
+    "studentPersona": {
+      "name": "Kabir",
+      "age": 7,
+      "traits": ["energetic", "sees patterns quickly"],
+      "opening": {
+        "en": "Ma'am, 4 times 3 is 7. Four plus three is seven, so times must be the same as plus.",
+        "hi": "मैडम, 4 गुना 3 है 7। चार और तीन सात होते हैं, तो गुना भी जोड़ जैसा ही होगा।"
+      },
+      "misconception": {
+        "id": "multiply-is-add-once",
+        "belief": {
+          "en": "Multiplication just adds the two numbers once.",
+          "hi": "गुणा दोनों संख्याओं को एक बार जोड़ देता है।"
+        },
+        "resistance": [
+          {
+            "en": "But the sign looks like a plus turned sideways. It should be almost the same.",
+            "hi": "पर चिह्न तो प्लस को तिरछा करके बनाया है। लगभग वही होगा न।"
+          },
+          {
+            "en": "If I have four and three, I have seven things. Where do the extra numbers come from?",
+            "hi": "अगर मेरे पास चार और तीन हैं, तो सात चीज़ें हैं। बाकी संख्याएँ कहाँ से आएँगी?"
+          }
+        ],
+        "concession": {
+          "en": "Oh, four groups of three... 3, 6, 9, 12. Not one four plus one three!",
+          "hi": "अरे, तीन-तीन के चार समूह... 3, 6, 9, 12। एक चार और एक तीन नहीं!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["equal groups", "repeated addition", "multiplication facts"],
+        "mustNotReveal": ["the answer twelve", "that 4 times 3 means four groups of three"],
+        "exitCondition": "Student builds four groups of three and counts twelve."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कितने", "kitne", "why", "how"],
+      "surfaceMarkers": ["तुमने", "tumne", "दिखाओ", "dikhao", "समूह", "samuh", "सोचो", "socho"],
+      "correctMarkers": ["समूह", "samuh", "group", "बार-बार जोड़", "repeated addition", "3, 6, 9, 12", "12", "बारह"],
+      "exampleWords": ["गोली", "marble", "टॉफी", "toffee", "पेंसिल", "pencil", "थाली", "plate"],
+      "jargonBlacklist": ["multiplicand", "commutative property", "गुणनफल नियम"],
+      "wrongFactMarkers": ["4 गुना 3 सात", "4 times 3 is 7", "जवाब 7", "answer is 7"],
+      "correctFactMarkers": ["4 गुना 3 बारह", "4 times 3 is 12", "जवाब 12", "answer is 12", "3, 6, 9, 12"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Correct 4 × 3 to 12 by showing four equal groups of three.",
+          "hi": "तीन-तीन के चार समूह दिखाकर 4 × 3 = 12 सही करें।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Lay out four plates with three toffees each and count by threes together.",
+          "hi": "चार थालियों में तीन-तीन टॉफी रखें और साथ में तीन-तीन करके गिनें।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "maths-c2-l3-mult-always-bigger",
+    "version": "1.0.0",
+    "pack": "maths-class2",
+    "level": 3,
+    "language": "hi",
+    "curriculum": {
+      "class": 2,
+      "subject": "maths",
+      "topic": "multiplication by one and zero",
+      "ncertRef": "Maths Magic 2, Ch. 8 (Grouping and Sharing)"
+    },
+    "competencies": ["misconceptions", "clarity"],
+    "title": {
+      "en": "Does multiplying always make it bigger?",
+      "hi": "क्या गुणा हमेशा बड़ा करता है?"
+    },
+    "studentPersona": {
+      "name": "Meher",
+      "age": 7,
+      "traits": ["rule-loving", "surprised by exceptions"],
+      "opening": {
+        "en": "Ma'am, you said multiplication is repeated addition. So 5 times 1 must be 6, because 5 plus 1 is 6. And multiplying always makes numbers bigger, right?",
+        "hi": "मैडम, आपने कहा गुणा बार-बार जोड़ है। तो 5 गुना 1 छह होगा, क्योंकि 5 और 1 छह हैं। और गुणा हमेशा संख्या बड़ी करता है, है न?"
+      },
+      "misconception": {
+        "id": "multiply-always-increases",
+        "belief": {
+          "en": "Multiplying always makes a number bigger, and ×1 adds one.",
+          "hi": "गुणा हमेशा संख्या बड़ी करता है, और ×1 में एक जोड़ते हैं।"
+        },
+        "resistance": [
+          {
+            "en": "But every multiplication I did before became bigger. Why would 5 times 1 be different?",
+            "hi": "पर मैंने पहले जो भी गुणा किया, वह बड़ा हुआ। 5 गुना 1 अलग क्यों होगा?"
+          },
+          {
+            "en": "If it stays five, then we did not multiply at all. That cannot be right.",
+            "hi": "अगर पाँच ही रहा, तो हमने गुणा किया ही नहीं। यह सही नहीं हो सकता।"
+          }
+        ],
+        "concession": {
+          "en": "One group of five is just five. So ×1 keeps it the same... and ×0 means no groups at all, so zero!",
+          "hi": "पाँच का एक समूह तो पाँच ही है। तो ×1 उसे वही रखता है... और ×0 का मतलब कोई समूह नहीं, तो शून्य!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["multiplication by one", "multiplication by zero", "equal groups"],
+        "mustNotReveal": ["that 5 times 1 equals 5", "that anything times zero is zero"],
+        "exitCondition": "Student explains ×1 as one group and ×0 as no groups, in her own words."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "क्यों", "kyun", "कैसे", "kaise", "why", "how"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "तुमने", "tumne", "सोचो", "socho", "समूह", "samuh"],
+      "correctMarkers": ["एक समूह", "ek samuh", "one group", "कोई समूह नहीं", "no groups", "शून्य", "zero", "वही रहता", "stays the same"],
+      "exampleWords": ["थाली", "plate", "टॉफी", "toffee", "गोली", "marble", "पेंसिल", "pencil"],
+      "jargonBlacklist": ["multiplicative identity", "absorbing element", "तत्समक अवयव"],
+      "wrongFactMarkers": ["5 गुना 1 छह", "5 times 1 is 6", "गुणा हमेशा बड़ा", "multiply always bigger"],
+      "correctFactMarkers": ["5 गुना 1 पाँच", "5 times 1 is 5", "गुणा हमेशा बड़ा नहीं", "not always bigger", "शून्य समूह", "zero groups"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "misconceptions",
+        "behavior": {
+          "en": "Ask her to build the groups physically before naming the rule, then let her revise it.",
+          "hi": "नियम बताने से पहले समूह बनवाएँ, फिर उसे नियम सुधारने दें।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Contrast one plate of five with zero plates to make ×1 and ×0 visible.",
+          "hi": "पाँच की एक थाली और शून्य थाली के फर्क से ×1 और ×0 दिखाएँ।"
+        }
+      }
+    ]
+  }
+]

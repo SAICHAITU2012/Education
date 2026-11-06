@@ -1,0 +1,85 @@
+{
+  "id": "npst-fln-core",
+  "version": "1.0.0",
+  "competencies": [
+    {
+      "id": "accuracy",
+      "name": { "en": "Accuracy", "hi": "तथ्यात्मक सटीकता" },
+      "description": {
+        "en": "Facts, methods and curriculum alignment are correct — held to a high bar.",
+        "hi": "तथ्य, विधि और पाठ्यक्रम के अनुसार सही सामग्री — ऊँचे मानक पर।"
+      },
+      "indicators": [
+        { "en": "States correct facts and correct procedure for the class level", "hi": "कक्षा स्तर के अनुसार सही तथ्य और सही विधि बताती हैं" },
+        { "en": "Does not confirm a wrong answer from the child", "hi": "बच्चे का गलत उत्तर सही नहीं बतातीं" },
+        { "en": "Stays within the curriculum scope of the class and topic", "hi": "कक्षा और विषय की पाठ्य-सीमा में रहती हैं" }
+      ],
+      "npstRef": "NPST Area 2 — Professional Knowledge & Understanding (curriculum & content)",
+      "teachRef": "TEACH — Instruction (accurate content)",
+      "critical": true
+    },
+    {
+      "id": "clarity",
+      "name": { "en": "Clarity", "hi": "स्पष्टता" },
+      "description": {
+        "en": "An explanation a child of that age can actually follow — concrete, short, jargon-free.",
+        "hi": "उस उम्र का बच्चा जिसे आसानी से समझ सके — ठोस उदाहरण, छोटे वाक्य, बिना कठिन शब्द।"
+      },
+      "indicators": [
+        { "en": "Uses a concrete example from the child's world", "hi": "बच्चे की दुनिया से ठोस उदाहरण देती हैं" },
+        { "en": "Short sentences; one idea at a time", "hi": "छोटे वाक्य; एक बार में एक बात" },
+        { "en": "No age-inappropriate jargon", "hi": "उम्र से बड़े कठिन शब्द नहीं" }
+      ],
+      "npstRef": "NPST Area 3 — Professional Practice & Competence (age-appropriate pedagogy)",
+      "teachRef": "TEACH — Instruction (clear explanation)",
+      "critical": false
+    },
+    {
+      "id": "misconceptions",
+      "name": { "en": "Misconceptions", "hi": "भ्रांतियों की समझ" },
+      "description": {
+        "en": "Surface the child's belief before correcting it — diagnose how she is thinking.",
+        "hi": "सुधारने से पहले बच्चे की सोच सामने लाएँ — पहले समझें वह कैसे सोच रही है।"
+      },
+      "indicators": [
+        { "en": "Asks what the child thinks / why she thinks so, before correcting", "hi": "सुधारने से पहले पूछती हैं कि बच्चा क्या और क्यों सोचता है" },
+        { "en": "Names or restates the child's belief in her own words", "hi": "बच्चे की धारणा उसी के शब्दों में दोहराती हैं" },
+        { "en": "Corrects the idea, not the child", "hi": "विचार को सुधारती हैं, बच्चे को नहीं" }
+      ],
+      "npstRef": "NPST Area 2 — Professional Knowledge (how children learn; error diagnosis)",
+      "teachRef": "TEACH — Instruction (checks for understanding; feedback)",
+      "critical": true
+    },
+    {
+      "id": "questioning",
+      "name": { "en": "Questioning", "hi": "प्रश्न-कौशल" },
+      "description": {
+        "en": "Probing that invites curiosity and thinking — not guess-the-answer.",
+        "hi": "ऐसे प्रश्न जो सोच और जिज्ञासा जगाएँ — 'जवाब बताओ' नहीं।"
+      },
+      "indicators": [
+        { "en": "Asks open questions (how do you know? show me why)", "hi": "खुले प्रश्न पूछती हैं (कैसे पता? दिखाओ क्यों?)" },
+        { "en": "Gives the child time and space to reason", "hi": "बच्चे को सोचने का समय और जगह देती हैं" },
+        { "en": "Asks the child to show her thinking, not just answer", "hi": "सिर्फ जवाब नहीं — सोच दिखाने को कहती हैं" }
+      ],
+      "npstRef": "NPST Area 3 — Professional Practice (questioning & engagement)",
+      "teachRef": "TEACH — Instruction (open-ended questioning); Socio-emotional (autonomy)",
+      "critical": false
+    }
+  ],
+  "weightsByLevel": {
+    "1": { "accuracy": 0.6, "clarity": 0.25, "questioning": 0.15 },
+    "2": { "clarity": 0.5, "accuracy": 0.3, "questioning": 0.2 },
+    "3": { "misconceptions": 0.45, "questioning": 0.25, "clarity": 0.2, "accuracy": 0.1 },
+    "4": { "questioning": 0.45, "misconceptions": 0.25, "clarity": 0.2, "accuracy": 0.1 },
+    "5": { "accuracy": 0.25, "clarity": 0.25, "misconceptions": 0.25, "questioning": 0.25 }
+  },
+  "decision": {
+    "passThreshold": 0.72,
+    "retryThreshold": 0.45,
+    "competencyFloor": 0.5,
+    "levelUp": { "passesRequired": 2, "distinctScenariosRequired": 2 },
+    "minConfidence": 0.45,
+    "minEvidenceCoverage": 0.5
+  }
+}

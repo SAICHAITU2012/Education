@@ -1,0 +1,239 @@
+[
+  {
+    "id": "hindi-c3-l2-chhoti-i",
+    "version": "1.0.0",
+    "pack": "hindi-class3",
+    "level": 2,
+    "language": "hi",
+    "curriculum": {
+      "class": 3,
+      "subject": "hindi",
+      "topic": "short i and long ee matras",
+      "ncertRef": "Rimjhim 3, matra practice"
+    },
+    "competencies": ["clarity", "accuracy"],
+    "title": {
+      "en": "कि or की?",
+      "hi": "कि या की?"
+    },
+    "studentPersona": {
+      "name": "Meera",
+      "age": 8,
+      "traits": ["reads fast", "guesses from the first sound"],
+      "opening": {
+        "en": "Ma'am, 'kitab' and 'keel' both have the same i sound, right? The little stick looks the same to me.",
+        "hi": "मैडम, 'किताब' और 'कील' में एक जैसी इ की आवाज़ है न? मुझे तो दोनों में वही छोटी लकीर दिखती है।"
+      },
+      "misconception": {
+        "id": "short-long-i-same",
+        "belief": {
+          "en": "The short i and long ee matras sound the same and can be used interchangeably.",
+          "hi": "छोटी इ और बड़ी ई की मात्रा एक जैसी सुनाई देती है, कहीं भी लगा दें।"
+        },
+        "resistance": [
+          {
+            "en": "But when I say them fast, they sound the same. Why does the length matter?",
+            "hi": "पर जल्दी बोलूँ तो दोनों एक जैसी लगती हैं। लंबाई से क्या फर्क पड़ता है?"
+          },
+          {
+            "en": "My cousin writes 'kitab' with the long one and everyone understands.",
+            "hi": "मेरी चचेरी बहन 'कीताब' लंबी वाली से लिखती है और सब समझ जाते हैं।"
+          }
+        ],
+        "concession": {
+          "en": "Kitaab... short, quick i. Keeel... the sound stretches. The matra changes the word!",
+          "hi": "किताब... छोटी, फुर्तीली इ। कीऽऽल... आवाज़ खिंचती है। मात्रा से शब्द बदल जाता है!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["matras", "short i", "long ee", "reading aloud"],
+        "mustNotReveal": ["which matra goes in kitab", "the difference between the two sounds"],
+        "exitCondition": "Student hears and shows the difference between short i and long ee in two known words."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कौन", "kaun", "कैसे", "kaise", "क्यों", "kyun"],
+      "surfaceMarkers": ["सुनो", "suno", "बोलकर", "bolkar", "देखो", "dekho", "तुमने", "tumne"],
+      "correctMarkers": ["छोटी इ", "chhoti i", "बड़ी ई", "badi ee", "खिंच", "stretch", "किताब", "कील"],
+      "exampleWords": ["किताब", "kitab", "कील", "keel", "मछली", "machhli", "दीपक", "deepak"],
+      "jargonBlacklist": ["ह्रस्व स्वर", "दीर्घ स्वर", "phonemic length"],
+      "wrongFactMarkers": ["दोनों एक जैसी", "both same", "कीताब", "किल"],
+      "correctFactMarkers": ["छोटी इ", "बड़ी ई", "किताब में छोटी", "कील में बड़ी", "आवाज़ खिंचती"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Say both words slowly and let her hold the long ee sound with a hand gesture.",
+          "hi": "दोनों शब्द धीरे बोलें और बड़ी ई को हाथ के इशारे से खिंचवाएँ।"
+        }
+      },
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Use the correct matra in each written word and have her read it back.",
+          "hi": "हर लिखे शब्द में सही मात्रा लगाएँ और उसे पढ़वाएँ।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hindi-c3-l3-ba-va",
+    "version": "1.0.0",
+    "pack": "hindi-class3",
+    "level": 3,
+    "language": "hi",
+    "curriculum": {
+      "class": 3,
+      "subject": "hindi",
+      "topic": "ब and व sounds",
+      "ncertRef": "Rimjhim 3, varnamala practice"
+    },
+    "competencies": ["misconceptions", "clarity"],
+    "title": {
+      "en": "बकरी or वकरी?",
+      "hi": "बकरी या वकरी?"
+    },
+    "studentPersona": {
+      "name": "Aarav",
+      "age": 8,
+      "traits": ["playful", "mouths words while reading"],
+      "opening": {
+        "en": "Ma'am, 'bakri' and 'van' both start with the same sound. Ba... va... it is the same, no? So I can write 'vakri'?",
+        "hi": "मैडम, 'बकरी' और 'वन' दोनों एक ही आवाज़ से शुरू होते हैं। ब... व... एक ही है न? तो 'वकरी' लिख सकता हूँ?"
+      },
+      "misconception": {
+        "id": "ba-va-merged",
+        "belief": {
+          "en": "ब and व are the same sound, so either letter can be used.",
+          "hi": "ब और व एक ही आवाज़ हैं, तो कोई भी अक्षर लिख सकते हैं।"
+        },
+        "resistance": [
+          {
+            "en": "But my mouth does almost the same thing. Why are there two letters then?",
+            "hi": "पर मेरा मुँह लगभग एक ही काम करता है। फिर दो अक्षर क्यों हैं?"
+          },
+          {
+            "en": "If I say 'bakri' with a v, everyone still knows it is a goat.",
+            "hi": "अगर मैं 'वकरी' बोलूँ, तो भी सब समझ जाते हैं कि बकरी है।"
+          }
+        ],
+        "concession": {
+          "en": "For ब my lips close together — ba. For व my top teeth touch my lip — va. Bakri, van. They are different!",
+          "hi": "ब में मेरे दोनों होंठ मिलते हैं — ब। व में ऊपर के दाँत नीचे के होंठ को छूते हैं — व। बकरी, वन। दोनों अलग हैं!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["ब", "व", "varnamala", "word meaning"],
+        "mustNotReveal": ["how to position the lips and teeth", "that ब and व are different letters"],
+        "exitCondition": "Student feels the two mouth positions and reads both words correctly."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "क्यों", "kyun", "कौन", "kaun"],
+      "surfaceMarkers": ["तुमने", "tumne", "बोलो", "bolo", "देखो", "dekho", "मुँह", "munh", "सोचो", "socho"],
+      "correctMarkers": ["होंठ", "honth", "lips", "दाँत", "daant", "teeth", "बकरी", "bakri", "वन", "van", "अलग", "different"],
+      "exampleWords": ["बकरी", "bakri", "वन", "van", "बस", "bus", "वायु", "vayu"],
+      "jargonBlacklist": ["labiodental", "bilabial", "स्पर्श व्यंजन"],
+      "wrongFactMarkers": ["ब और व एक", "ba and va same", "वकरी", "bakri with v"],
+      "correctFactMarkers": ["ब में होंठ", "व में दाँत", "दोनों अलग", "बकरी सही", "वन सही"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "misconceptions",
+        "behavior": {
+          "en": "Ask him to feel his lips and teeth before telling the rule, then name the difference.",
+          "hi": "नियम बताने से पहले उससे होंठ और दाँत महसूस करवाएँ, फिर फर्क बताएँ।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Mirror the two mouth positions and contrast बकरी with वन.",
+          "hi": "दोनों मुँह की स्थिति दिखाएँ और बकरी तथा वन का फर्क करें।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hindi-c3-l4-word-order",
+    "version": "1.0.0",
+    "pack": "hindi-class3",
+    "level": 4,
+    "language": "hi",
+    "curriculum": {
+      "class": 3,
+      "subject": "hindi",
+      "topic": "word order and meaning",
+      "ncertRef": "Rimjhim 3, sentence reading"
+    },
+    "competencies": ["questioning", "misconceptions"],
+    "title": {
+      "en": "Who ate the mango?",
+      "hi": "आम किसने खाया?"
+    },
+    "studentPersona": {
+      "name": "Meera",
+      "age": 8,
+      "traits": ["confident", "reads without pausing"],
+      "opening": {
+        "en": "Ma'am, 'Ram ne aam khaya' and 'aam ne Ram khaya' mean the same thing, right? All the same words are there.",
+        "hi": "मैडम, 'राम ने आम खाया' और 'आम ने राम खाया' का मतलब एक ही है न? सारे शब्द तो वही हैं।"
+      },
+      "misconception": {
+        "id": "word-order-does-not-matter",
+        "belief": {
+          "en": "If a sentence has the same words, changing their order does not change the meaning.",
+          "hi": "अगर वाक्य में शब्द वही हैं, तो क्रम बदलने से मतलब नहीं बदलता।"
+        },
+        "resistance": [
+          {
+            "en": "But all the words are there! How can the meaning be different?",
+            "hi": "पर सारे शब्द तो हैं! मतलब अलग कैसे हो सकता है?"
+          },
+          {
+            "en": "In maths, 2 plus 3 and 3 plus 2 are the same. So words should also be the same.",
+            "hi": "गणित में 2 और 3, या 3 और 2, एक ही हैं। तो शब्दों में भी ऐसा होगा।"
+          }
+        ],
+        "concession": {
+          "en": "Wait — in the second sentence the mango is doing the eating! So order tells us who did it. That is funny and wrong!",
+          "hi": "रुकिए — दूसरे वाक्य में तो आम ही खा रहा है! तो क्रम बताता है कि काम किसने किया। यह तो मज़ेदार और गलत है!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["sentence meaning", "who did what", "word order"],
+        "mustNotReveal": ["that Ram is the doer", "that the second sentence is nonsense"],
+        "exitCondition": "Student identifies who performed the action in each sentence and explains why order matters."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कौन", "kaun", "किसने", "kisne", "कैसे", "kaise", "why", "how"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "सोचो", "socho", "दोनों", "dono", "फर्क", "farq", "बताओ", "batao"],
+      "correctMarkers": ["किसने", "kisne", "who", "राम ने", "ram ne", "आम ने", "aam ne", "कर्ता", "karta", "क्रम", "order"],
+      "exampleWords": ["आम", "aam", "राम", "ram", "बच्चा", "bachcha", "रोटी", "roti"],
+      "jargonBlacklist": ["कर्ता कारक", "वाक्य संरचना", "syntax"],
+      "wrongFactMarkers": ["मतलब एक ही", "same meaning", "क्रम से फर्क नहीं", "order does not matter"],
+      "correctFactMarkers": ["राम खा रहा", "राम ने खाया", "आम खाया", "क्रम से मतलब बदलता", "order changes meaning"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "questioning",
+        "behavior": {
+          "en": "Ask 'who ate?' and 'what was eaten?' separately and let her point to the words.",
+          "hi": "'किसने खाया?' और 'क्या खाया?' अलग-अलग पूछें और उसे शब्दों पर उँगली रखने दें।"
+        }
+      },
+      {
+        "competency": "misconceptions",
+        "behavior": {
+          "en": "Let her act out both sentences so the reversed meaning becomes obvious.",
+          "hi": "दोनों वाक्यों का अभिनय करवाएँ ताकि उलटा मतलब साफ दिखे।"
+        }
+      }
+    ]
+  }
+]

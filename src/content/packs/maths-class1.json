@@ -1,0 +1,239 @@
+[
+  {
+    "id": "maths-c1-l1-count-spread",
+    "version": "1.0.0",
+    "pack": "maths-class1",
+    "level": 1,
+    "language": "hi",
+    "curriculum": {
+      "class": 1,
+      "subject": "maths",
+      "topic": "counting and one-to-one matching",
+      "ncertRef": "Maths Magic 1, Ch. 2 (Numbers from One to Nine)"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "Which row has more?",
+      "hi": "किस पंक्ति में ज़्यादा हैं?"
+    },
+    "studentPersona": {
+      "name": "Riya",
+      "age": 6,
+      "traits": ["observant", "literal", "eager to be right"],
+      "opening": {
+        "en": "Ma'am, look! This row has more because the buttons are spread far apart. That row is bunched up, so it has less.",
+        "hi": "मैडम, देखिए! इस पंक्ति में ज़्यादा हैं क्योंकि बटन दूर-दूर फैले हैं। वह पंक्ति पास-पास है, तो उसमें कम हैं।"
+      },
+      "misconception": {
+        "id": "spread-means-more",
+        "belief": {
+          "en": "The row that takes up more space must have more things.",
+          "hi": "जो पंक्ति ज़्यादा जगह लेती है, उसमें चीज़ें ज़्यादा होंगी।"
+        },
+        "resistance": [
+          {
+            "en": "But look how long this row is! It has to be more.",
+            "hi": "पर देखिए यह पंक्ति कितनी लंबी है! इसमें ज़्यादा ही होंगे।"
+          },
+          {
+            "en": "My eyes say the long row is bigger. Why are you saying no?",
+            "hi": "मेरी आँखें कहती हैं लंबी पंक्ति बड़ी है। आप ना क्यों कह रही हैं?"
+          }
+        ],
+        "concession": {
+          "en": "Oh! One button for one finger... both rows have seven. The space tricked me!",
+          "hi": "अरे! एक बटन पर एक उँगली... दोनों पंक्तियों में सात हैं। जगह ने मुझे धोखा दिया!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["counting", "one-to-one matching", "comparing groups"],
+        "mustNotReveal": ["that both rows have the same number", "the number seven"],
+        "exitCondition": "Student matches each object to a count and accepts that spacing does not change quantity."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कितने", "kitne", "why", "how"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "सोचो", "socho", "बताओ कैसे", "batao kaise", "तुमने", "tumne"],
+      "correctMarkers": ["एक-एक", "ek-ek", "one by one", "गिनो", "gino", "गिनती", "count", "मिलान", "match", "बराबर", "equal"],
+      "exampleWords": ["बटन", "button", "गोली", "marble", "उँगली", "finger", "बिंदु", "dot"],
+      "jargonBlacklist": ["cardinality", "one-to-one correspondence", "संख्या सिद्धांत"],
+      "wrongFactMarkers": ["फैले हैं इसलिए ज़्यादा", "spread out so more", "लंबी पंक्ति ज़्यादा", "long row is more"],
+      "correctFactMarkers": ["दोनों में सात", "both have seven", "एक-एक करके गिनो", "count one by one", "जगह से फर्क नहीं", "spacing does not matter"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Establish that both rows contain the same number by counting, not by length.",
+          "hi": "लंबाई से नहीं, गिनकर साबित करें कि दोनों पंक्तियों में बराबर हैं।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Use a one-finger-per-button or pair-matching action she can copy.",
+          "hi": "हर बटन पर एक उँगली रखने या जोड़ी बनाने की क्रिया दिखाएँ जिसे वह दोहरा सके।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "maths-c1-l1-add-within-10",
+    "version": "1.0.0",
+    "pack": "maths-class1",
+    "level": 1,
+    "language": "hi",
+    "curriculum": {
+      "class": 1,
+      "subject": "maths",
+      "topic": "addition within ten",
+      "ncertRef": "Maths Magic 1, Ch. 3 (Addition)"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "Four and three",
+      "hi": "चार और तीन"
+    },
+    "studentPersona": {
+      "name": "Aman",
+      "age": 6,
+      "traits": ["quick", "confident", "counts on fingers"],
+      "opening": {
+        "en": "Ma'am, 4 plus 3 is 8. I counted 4, 5, 6, 7, 8 — see, five numbers!",
+        "hi": "मैडम, 4 और 3 मिलाकर 8 होते हैं। मैंने 4, 5, 6, 7, 8 गिना — देखिए, पाँच संख्याएँ!"
+      },
+      "misconception": {
+        "id": "counts-start-as-one",
+        "belief": {
+          "en": "When adding on, the starting number is also the first step.",
+          "hi": "जोड़ते समय शुरुआती संख्या भी पहला कदम होती है।"
+        },
+        "resistance": [
+          {
+            "en": "But my fingers say eight. I counted them all.",
+            "hi": "पर मेरी उँगलियाँ आठ कहती हैं। मैंने सब गिने।"
+          },
+          {
+            "en": "Why should I start after four? Four is already there, isn't it?",
+            "hi": "मैं चार के बाद क्यों शुरू करूँ? चार तो पहले से है न?"
+          }
+        ],
+        "concession": {
+          "en": "So four is already on the table... then 5, 6, 7. Seven! I counted four twice.",
+          "hi": "तो चार पहले से मेज़ पर है... फिर 5, 6, 7। सात! मैंने चार को दो बार गिन लिया।"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["addition within ten", "counting on", "finger counting"],
+        "mustNotReveal": ["the answer seven", "the rule to start counting after the first number"],
+        "exitCondition": "Student sees that the starting number is not counted again and finds seven."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कितने", "kitne", "why", "how"],
+      "surfaceMarkers": ["तुमने", "tumne", "दिखाओ", "dikhao", "सोचो", "socho", "बताओ", "batao"],
+      "correctMarkers": ["चार के बाद", "chaar ke baad", "after four", "5, 6, 7", "पाँच छह सात", "सात", "seven", "7"],
+      "exampleWords": ["गोली", "marble", "बटन", "button", "सेब", "apple", "उँगली", "finger"],
+      "jargonBlacklist": ["additive identity", "number line operation", "संक्रिया"],
+      "wrongFactMarkers": ["4 और 3 आठ", "4 plus 3 is 8", "जवाब 8", "answer is 8"],
+      "correctFactMarkers": ["4 और 3 सात", "4 plus 3 is 7", "जवाब सात", "answer is 7", "5, 6, 7"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Correct the total to seven and show why the starting four is not counted again.",
+          "hi": "कुल सात सही करें और दिखाएँ कि शुरुआती चार को दोबारा क्यों नहीं गिनते।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Put four objects down first, then add three one at a time while counting on.",
+          "hi": "पहले चार चीज़ें रखें, फिर एक-एक करके तीन जोड़ते हुए आगे गिनें।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "maths-c1-l1-shape-corners",
+    "version": "1.0.0",
+    "pack": "maths-class1",
+    "level": 1,
+    "language": "hi",
+    "curriculum": {
+      "class": 1,
+      "subject": "maths",
+      "topic": "basic shapes",
+      "ncertRef": "Maths Magic 1, Ch. 1 (Shapes and Space)"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "Does a circle have corners?",
+      "hi": "क्या गोल में कोने होते हैं?"
+    },
+    "studentPersona": {
+      "name": "Riya",
+      "age": 6,
+      "traits": ["curious", "hands-on", "thinks out loud"],
+      "opening": {
+        "en": "Ma'am, this circle is closed like a square, so it must have corners too. Where are they?",
+        "hi": "मैडम, यह गोल आकार चौकोर की तरह बंद है, तो इसमें भी कोने होंगे न? वे कहाँ हैं?"
+      },
+      "misconception": {
+        "id": "closed-means-corners",
+        "belief": {
+          "en": "Every closed shape has corners; a circle is just a shape with hidden corners.",
+          "hi": "हर बंद आकार में कोने होते हैं; गोल में बस कोने छिपे हैं।"
+        },
+        "resistance": [
+          {
+            "en": "But if I keep my finger on the line, I never fall off. So it is closed, right?",
+            "hi": "पर अगर मैं उँगली लाइन पर रखूँ, तो कहीं गिरती नहीं। तो यह बंद है न?"
+          },
+          {
+            "en": "Then where does the circle turn? There must be a corner somewhere.",
+            "hi": "फिर गोल मुड़ता कहाँ है? कहीं तो कोना होगा।"
+          }
+        ],
+        "concession": {
+          "en": "Oh, I can roll it and my finger never stops at a point. A square stops. The circle has no corners!",
+          "hi": "अरे, इसे घुमाओ तो उँगली किसी बिंदु पर रुकती ही नहीं। चौकोर रुक जाता है। गोल में कोई कोना नहीं!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["circle", "square", "corners", "rolling shapes"],
+        "mustNotReveal": ["that a circle has zero corners", "the word round"],
+        "exitCondition": "Student tests the edge and explains that a circle has no corners."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कहाँ", "kahan", "कैसे", "kaise", "where", "how"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "दिखाओ", "dikhao", "छूकर", "chhukar", "सोचो", "socho"],
+      "correctMarkers": ["कोई कोना नहीं", "no corners", "शून्य कोने", "zero corners", "घुमाओ", "roll", "गोल है", "round"],
+      "exampleWords": ["गेंद", "ball", "पहिया", "wheel", "थाली", "plate", "रोटी", "roti"],
+      "jargonBlacklist": ["polygon", "vertices", "ज्यामितीय शीर्ष"],
+      "wrongFactMarkers": ["गोल में कोने", "circle has corners", "छिपे कोने", "hidden corners"],
+      "correctFactMarkers": ["गोल में कोई कोना नहीं", "circle has no corners", "शून्य कोने", "zero corners"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "State correctly that a circle has no corners and distinguish it from a square.",
+          "hi": "सही बताएँ कि गोल में कोई कोना नहीं होता और उसे चौकोर से अलग करें।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Let her roll the shape and slide a finger along the edge to feel no stopping point.",
+          "hi": "आकार को घुमाने दें और किनारे पर उँगली फिसलने दें ताकि रुकने का बिंदु महसूस न हो।"
+        }
+      }
+    ]
+  }
+]

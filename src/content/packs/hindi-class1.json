@@ -1,0 +1,160 @@
+[
+  {
+    "id": "hindi-c1-l1-aa-matra",
+    "version": "1.0.0",
+    "pack": "hindi-class1",
+    "level": 1,
+    "language": "hi",
+    "curriculum": {
+      "class": 1,
+      "subject": "hindi",
+      "topic": "अ and आ sounds",
+      "ncertRef": "Sarangi 1, varnamala"
+    },
+    "competencies": ["accuracy", "clarity"],
+    "title": {
+      "en": "अ or आ?",
+      "hi": "अ या आ?"
+    },
+    "studentPersona": {
+      "name": "Riya",
+      "age": 6,
+      "traits": ["sings the alphabet", "rushes the sounds"],
+      "opening": {
+        "en": "Ma'am, 'अ' and 'आ' are the same, right? Both start with the same open mouth. So 'aam' can start with the small one too?",
+        "hi": "मैडम, 'अ' और 'आ' एक ही हैं न? दोनों में मुँह खुलता है। तो 'आम' छोटे अ से भी लिख सकते हैं?"
+      },
+      "misconception": {
+        "id": "a-aa-same",
+        "belief": {
+          "en": "अ and आ sound the same, so either can be used in a word.",
+          "hi": "अ और आ एक जैसी आवाज़ हैं, तो किसी भी शब्द में कोई भी लगा दें।"
+        },
+        "resistance": [
+          {
+            "en": "But my mouth opens for both! Why are there two letters?",
+            "hi": "पर दोनों में मेरा मुँह खुलता है! फिर दो अक्षर क्यों हैं?"
+          },
+          {
+            "en": "If I say 'am' quickly, it sounds like 'aam' anyway.",
+            "hi": "अगर मैं 'अम' जल्दी बोलूँ, तो 'आम' जैसा ही लगता है।"
+          }
+        ],
+        "concession": {
+          "en": "A... aa... the second one stretches! Aam has the long aa. They are different!",
+          "hi": "अ... आ... दूसरा खिंचता है! आम में लंबा आ है। दोनों अलग हैं!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["अ", "आ", "letter sounds", "आम"],
+        "mustNotReveal": ["that आ is the long sound", "how to write आम"],
+        "exitCondition": "Student hears the long आ and uses it in आम."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कौन", "kaun", "सुनो", "suno"],
+      "surfaceMarkers": ["सुनो", "suno", "बोलो", "bolo", "देखो", "dekho", "तुमने", "tumne"],
+      "correctMarkers": ["आ खिंचता", "aa stretch", "लंबा आ", "long aa", "आम", "aam", "अलग", "different"],
+      "exampleWords": ["आम", "aam", "अनार", "anaar", "आग", "aag", "अब", "ab"],
+      "jargonBlacklist": ["ह्रस्व स्वर", "दीर्घ स्वर", "vowel length"],
+      "wrongFactMarkers": ["अ और आ एक", "a and aa same", "अम"],
+      "correctFactMarkers": ["आ लंबा", "आम में आ", "अलग आवाज़", "आ खिंचता"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Model the short अ and long आ correctly and use आ in आम.",
+          "hi": "छोटा अ और लंबा आ सही बोलें और आम में आ लगाएँ।"
+        }
+      },
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Stretch the आ with a hand movement she can copy.",
+          "hi": "आ को हाथ के इशारे से खिंचवाएँ जिसे वह दोहरा सके।"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hindi-c1-l2-pa-pha",
+    "version": "1.0.0",
+    "pack": "hindi-class1",
+    "level": 2,
+    "language": "hi",
+    "curriculum": {
+      "class": 1,
+      "subject": "hindi",
+      "topic": "प and फ sounds",
+      "ncertRef": "Sarangi 1, varnamala"
+    },
+    "competencies": ["clarity", "accuracy"],
+    "title": {
+      "en": "प or फ?",
+      "hi": "प या फ?"
+    },
+    "studentPersona": {
+      "name": "Aman",
+      "age": 6,
+      "traits": ["loves picture cards", "guesses from the picture"],
+      "opening": {
+        "en": "Ma'am, 'pakka' and 'phakka' are the same. प and फ both make a p sound, so I can use either one.",
+        "hi": "मैडम, 'पक्का' और 'फक्का' एक ही हैं। प और फ दोनों से 'प' की आवाज़ आती है, तो कोई भी लिख सकता हूँ।"
+      },
+      "misconception": {
+        "id": "pa-pha-same",
+        "belief": {
+          "en": "प and फ sound the same, so they can be swapped.",
+          "hi": "प और फ एक जैसी आवाज़ हैं, तो बदल कर लिख सकते हैं।"
+        },
+        "resistance": [
+          {
+            "en": "But my mouth does the same thing for both. Why two letters?",
+            "hi": "पर दोनों में मेरा मुँह एक ही काम करता है। दो अक्षर क्यों?"
+          },
+          {
+            "en": "The picture is of a fruit, so everyone will know the word anyway.",
+            "hi": "तस्वीर में फल है, तो सब शब्द समझ जाएँगे न।"
+          }
+        ],
+        "concession": {
+          "en": "प is soft — pa. फ has a puff of air — pha! My hand feels the air. They are different!",
+          "hi": "प नरम है — प। फ में हवा का झोंका है — फ! मेरे हाथ को हवा लगती है। दोनों अलग हैं!"
+        }
+      },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["प", "फ", "letter sounds", "picture words"],
+        "mustNotReveal": ["that फ has an extra puff of air", "how to read फल"],
+        "exitCondition": "Student feels the air for फ and reads प and फ words correctly."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कौन", "kaun", "सुनो", "suno"],
+      "surfaceMarkers": ["सुनो", "suno", "बोलो", "bolo", "हाथ", "haath", "देखो", "dekho"],
+      "correctMarkers": ["हवा", "hawa", "air", "फ", "pha", "झोंका", "puff", "प", "pa"],
+      "exampleWords": ["फल", "phal", "पानी", "paani", "पंखा", "pankha", "फूल", "phool"],
+      "jargonBlacklist": ["महाप्राण", "अल्पप्राण", "aspirated consonant"],
+      "wrongFactMarkers": ["प और फ एक", "pa and pha same", "फक्का"],
+      "correctFactMarkers": ["फ में हवा", "प नरम", "दोनों अलग", "फल में फ"]
+    },
+    "expectedBehaviors": [
+      {
+        "competency": "clarity",
+        "behavior": {
+          "en": "Hold a hand in front of the mouth so she feels the puff of air for फ.",
+          "hi": "मुँह के सामने हाथ रखवाएँ ताकि फ की हवा महसूस हो।"
+        }
+      },
+      {
+        "competency": "accuracy",
+        "behavior": {
+          "en": "Read पानी and फल correctly and have her sort the picture cards.",
+          "hi": "पानी और फल सही पढ़ें और उसे तस्वीर कार्ड छाँटने दें।"
+        }
+      }
+    ]
+  }
+]

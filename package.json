@@ -1,0 +1,35 @@
+{
+  "name": "abhyas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Abhyas — practice before you teach. Voice-first rehearsal with a simulated AI student, evidence-cited rubric feedback, deterministic decisions.",
+  "type": "module",
+  "scripts": {
+    "dev:server": "tsx watch src/server/index.ts",
+    "dev:web": "vite",
+    "dev": "npm run dev:server & npm run dev:web & wait",
+    "build": "tsc --noEmit && vite build",
+    "start": "tsx src/server/index.ts",
+    "test": "vitest run",
+    "calibration": "tsx tools/calibration/run.ts",
+    "seed": "tsx src/server/seed.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}

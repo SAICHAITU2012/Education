@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" data-env="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abhyas — the teaching gameverse</title>
+<meta name="description" content="Abhyas is an AI practice layer where teachers rehearse real classroom moments by voice with a simulated student, get evidence-cited rubric feedback and level up — before facing real children.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ==================================================================
+   ABHYAS LANDING — gameverse design system (mirrors the app tokens)
+   ================================================================== */
+:root{
+  --sky-a:#ddefff; --sky-b:#b9e2fb; --sky-c:#eef9ff;
+  --surface:#f5fcff; --panel:rgba(255,255,255,.66); --glass:rgba(255,255,255,.6); --glass2:rgba(255,255,255,.84);
+  --ink:#123a4c; --muted:#5c8296; --line:rgba(18,58,76,.12); --line2:rgba(18,58,76,.24);
+  --gold:#0a94ad; --gold2:#39c6d8; --gold-deep:#0a6a80;
+  --cyan:#1f8fb4; --mint:#1c9e63; --coral:#ef5d7f; --violet:#8f6ae0;
+  --gold-soft:rgba(10,148,173,.12); --cyan-soft:rgba(31,143,180,.12); --mint-soft:rgba(28,158,99,.12);
+  --coral-soft:rgba(207,79,113,.12); --violet-soft:rgba(143,106,224,.12);
+  --shadow:0 22px 48px -20px rgba(31,41,90,.28); --shadow-sm:0 12px 28px -16px rgba(31,41,90,.24);
+  --orb-a:#9be8f5; --orb-b:#c9b6ff; --orb-c:#a8e6c9;
+  --r:18px; --btn-ink:#ffffff;
+  --sans:'Baloo 2','Noto Sans Devanagari','Segoe UI',system-ui,sans-serif;
+  --px:'Silkscreen','Baloo 2',monospace;
+  color-scheme:light;
+}
+html[data-env="dusk"]{
+  --sky-a:#ffe9d6; --sky-b:#ffd9c4; --sky-c:#cfe8ff;
+  --surface:#fff7ee; --panel:rgba(255,255,255,.62); --glass:rgba(255,255,255,.58); --glass2:rgba(255,255,255,.82);
+  --ink:#43302e; --muted:#8c7369; --line:rgba(67,48,46,.12); --line2:rgba(67,48,46,.24);
+  --gold:#e8842a; --gold2:#f5b041; --gold-deep:#a35a1d;
+  --orb-a:#ffd3a8; --orb-b:#c9b6ff; --orb-c:#a8e6c9;
+  --btn-ink:#33210a; color-scheme:light;
+}
+html[data-env="night"]{
+  --sky-a:#101a3c; --sky-b:#16244e; --sky-c:#1d2f5e;
+  --surface:#182650; --panel:rgba(24,38,80,.8); --glass:rgba(255,255,255,.07); --glass2:rgba(255,255,255,.12);
+  --ink:#eaf2ff; --muted:#9db4e8; --line:rgba(157,180,232,.16); --line2:rgba(157,180,232,.32);
+  --gold:#6fe5a8; --gold2:#a5ffd6; --gold-deep:#1c7c4c;
+  --cyan:#5cd6ff; --mint:#6fe5a8; --coral:#ff7d92; --violet:#b3a5ff;
+  --gold-soft:rgba(111,229,168,.14); --cyan-soft:rgba(92,214,255,.13);
+  --shadow:0 22px 48px -20px rgba(2,5,18,.85); --shadow-sm:0 12px 28px -16px rgba(2,5,18,.8);
+  --orb-a:#3ddc97; --orb-b:#5cd6ff; --orb-c:#b3a5ff;
+  --btn-ink:#08132c; color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);line-height:1.6;font-size:16px;overflow-x:hidden;
+  background:
+    radial-gradient(1200px 520px at 78% -8%, var(--orb-a-soft,rgba(255,211,168,.4)), transparent 70%),
+    linear-gradient(168deg,var(--sky-a) 0%,var(--sky-b) 52%,var(--sky-c) 100%);
+  transition:color .5s ease;
+}
+.px{font-family:var(--px);letter-spacing:.06em}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.15;letter-spacing:-.01em}
+.kicker{font-family:var(--px);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"★";font-family:var(--sans)}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:14px}
+.sub{font-size:17px;color:var(--muted);max-width:640px}
+section{padding:96px 0;position:relative}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:999px;border:1.5px solid var(--line2);font-size:13px;font-weight:700;background:var(--glass);backdrop-filter:blur(8px)}
+.chip.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:var(--gold-deep);color:var(--btn-ink);box-shadow:0 3px 0 var(--gold-deep)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── nav ─────────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:60;background:var(--panel);border-bottom:1.5px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.brand .mark{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:22px;color:#33210a;
+  background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 3px 0 var(--gold-deep),0 8px 18px -8px rgba(0,0,0,.3)}
+.brand b{font-size:19px;display:block;line-height:1.1}
+.brand small{font-size:11.5px;color:var(--muted);display:block;line-height:1.2}
+nav .links{display:flex;gap:26px;align-items:center}
+nav .links a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14.5px;transition:color .2s}
+nav .links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:800;font-size:15px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:transform .16s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:var(--gold-deep);color:var(--btn-ink);box-shadow:0 4px 0 var(--gold-deep),0 16px 30px -14px rgba(0,0,0,.35)}
+.btn.primary:hover{box-shadow:0 6px 0 var(--gold-deep),0 20px 34px -14px rgba(0,0,0,.4)}
+.btn.ghost{border-color:var(--line2);color:var(--ink);background:var(--glass)}
+.btn.px{font-family:var(--px);font-weight:700;font-size:13px;letter-spacing:.08em}
+.lang-btn{border:1.5px solid var(--line2);background:var(--glass);color:var(--ink);border-radius:999px;padding:8px 15px;font-family:var(--sans);font-weight:700;font-size:13px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── env switcher ────────────────────────────────────── */
+.env{display:flex;gap:6px;background:var(--glass);border:1.5px solid var(--line);border-radius:999px;padding:4px}
+.env button{border:0;background:transparent;border-radius:999px;padding:6px 13px;font-family:var(--px);font-size:10.5px;letter-spacing:.06em;color:var(--muted);cursor:pointer;text-transform:uppercase;transition:all .2s}
+.env button.on{background:linear-gradient(180deg,var(--gold2),var(--gold));color:var(--btn-ink);box-shadow:0 2px 0 var(--gold-deep)}
+[data-env="night"] .env button.on{color:#08132c}
+
+/* ── hero ────────────────────────────────────────────── */
+.hero{padding:84px 0 110px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .95fr;gap:44px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:800;margin:16px 0 12px}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--gold),var(--gold2) 60%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .tag{font-size:19px;font-weight:700;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero .tag .px{font-size:14px}
+.hero p.lead{font-size:17.5px;color:var(--muted);max-width:520px;margin-bottom:28px}
+.hero .badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero .team{margin-top:30px;font-size:13.5px;color:var(--muted);font-weight:600;display:flex;gap:10px;align-items:center}
+.hero .team b{color:var(--ink)}
+/* layered decor */
+.layer{position:absolute;inset:0;pointer-events:none}
+.sun{position:absolute;width:190px;height:190px;border-radius:50%;right:6%;top:4%;
+  background:radial-gradient(circle at 42% 38%,var(--gold2),var(--gold) 58%,transparent 74%);
+  filter:blur(1px) drop-shadow(0 0 60px var(--orb-a));animation:bob 9s ease-in-out infinite alternate;opacity:.9}
+[data-env="night"] .sun{background:radial-gradient(circle at 40% 36%,#f4f7ff,#c9d6ff 55%,transparent 72%);box-shadow:0 0 50px rgba(200,220,255,.4)}
+@keyframes bob{from{transform:translateY(-8px)}to{transform:translateY(12px)}}
+.island{position:absolute;width:2px;height:2px;border-radius:0}
+.i1{top:5%;left:3%;animation:bob 11s ease-in-out infinite alternate}
+.i2{top:72%;right:6%;left:auto;animation:bob 13s ease-in-out infinite alternate;animation-delay:-5s}
+.i3{top:30%;right:26%;animation:bob 10s ease-in-out infinite alternate;animation-delay:-3s}
+.cloud{position:absolute;width:2px;height:2px;animation:drift 34s linear infinite;opacity:.8}
+.c1{top:6%;animation-duration:40s}.c2{top:3%;animation-duration:55s;animation-delay:-20s}.c3{top:13%;animation-duration:47s;animation-delay:-30s}
+@keyframes drift{from{transform:translateX(-12vw)}to{transform:translateX(112vw)}}
+.orbs{position:absolute;top:0;left:0;right:0;height:920px;overflow:hidden;pointer-events:none;z-index:0}
+.orbs span{position:absolute;border-radius:50%;pointer-events:none}
+.orbs .o1{width:52vw;height:52vw;left:-16vw;top:-18vh;background:radial-gradient(closest-side,var(--orb-a),transparent 72%);opacity:.55}
+.orbs .o2{width:44vw;height:44vw;right:-14vw;top:12vh;background:radial-gradient(closest-side,var(--orb-b),transparent 72%);opacity:.45}
+.orbs .o3{width:46vw;height:46vw;left:20vw;bottom:-20vh;background:radial-gradient(closest-side,var(--orb-c),transparent 72%);opacity:.45}
+.orbs span{animation:orbdrift 30s ease-in-out infinite alternate}
+@keyframes orbdrift{50%{transform:translate3d(3vw,2vh,0) scale(1.06)}}
+
+/* quest ticket (3D tilt) */
+.ticket{position:relative;background:linear-gradient(165deg,#fffdf4,#fff3d6 70%,#ffe9b8);border-radius:20px;border:2px solid #e8b64a;
+  box-shadow:0 30px 60px -24px rgba(80,50,10,.45),inset 0 1px 0 rgba(255,255,255,.9);color:#3d2a10;
+  transform-style:preserve-3d;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .18s ease-out;display:grid;grid-template-columns:1fr 54px;overflow:hidden;will-change:transform}
+.ticket::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 240px at var(--gx,70%) var(--gy,30%),rgba(255,255,255,.5),transparent 60%);opacity:0;transition:opacity .25s}
+.ticket:hover::before{opacity:1}
+.ticket .body{padding:22px 22px 20px}
+.ticket .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.ticket .quest{font-family:var(--px);font-size:11px;letter-spacing:.08em;background:#17335a;color:#ffd76b;padding:6px 11px;border-radius:8px;display:inline-flex;gap:6px;align-items:center}
+.ticket .quest::before{content:"📍";font-family:var(--sans);font-size:12px}
+.ticket .topic{font-weight:800;font-size:16.5px}
+.ticket .turns{margin-left:auto;font-family:var(--px);font-size:10px;color:#a3762a;display:flex;gap:5px;align-items:center}
+.student{display:flex;gap:12px;background:rgba(255,255,255,.65);border:1.5px solid #eeda9e;border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.student .av{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#7ea6ff,#4a6cf0);color:#fff;display:grid;place-items:center;font-weight:800;box-shadow:0 6px 14px -6px rgba(30,60,180,.5);flex:none}
+.student span{font-family:var(--px);font-size:10px;color:#a3762a;letter-spacing:.06em}
+.student p{font-size:14px;font-weight:600;line-height:1.4;margin-top:2px}
+.ticket .meta{display:flex;gap:8px;align-items:center;margin-bottom:16px}
+.ticket .lvl{font-family:var(--px);font-size:11px;background:#17335a;color:#ffd76b;border-radius:8px;padding:6px 10px}
+.ticket .tagz{display:flex;gap:7px;flex-wrap:wrap}
+.ticket .tagz i{font-style:normal;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.75);border:1.5px solid #eeda9e;color:#6b4e1d}
+.ticket .cta2{display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(180deg,var(--gold2),#e8842a);border:0;color:#33210a;font-weight:800;font-size:15px;padding:13px;border-radius:12px;width:100%;cursor:pointer;box-shadow:0 4px 0 #a35a1d;font-family:var(--sans)}
+.ticket .stub{border-left:2.5px dashed #d9a83e;display:grid;place-items:center;gap:14px;padding:16px 0;background:rgba(255,255,255,.35)}
+.ticket .admit{font-family:var(--px);font-size:9.5px;letter-spacing:.28em;color:#a3762a;writing-mode:vertical-rl}
+.barcode{width:22px;height:120px;background:repeating-linear-gradient(180deg,#3d2a10 0 2px,transparent 2px 4px,#3d2a10 4px 5px,transparent 5px 9px)}
+.glowcard{position:relative}
+.glowcard::after{content:"";position:absolute;inset:-2px;border-radius:22px;background:linear-gradient(140deg,var(--orb-a),transparent 40%,var(--orb-b));z-index:-1;filter:blur(22px);opacity:.55}
+
+/* ── stats band ──────────────────────────────────────── */
+.band{background:var(--glass2);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);padding:56px 0}
+.band .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.stat .n{font-family:var(--px);font-size:clamp(30px,4vw,44px);font-weight:700;color:var(--gold)}
+.stat .l{font-size:14px;color:var(--muted);margin-top:6px;max-width:250px}
+.srcnote{margin-top:30px;font-size:12.5px;color:var(--muted)}
+
+/* ── quest path ──────────────────────────────────────── */
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;position:relative}
+.path::before{content:"";position:absolute;top:26px;left:8%;right:8%;border-top:3px dashed var(--line2);z-index:0}
+.step{position:relative;z-index:1;background:var(--glass2);border:1.5px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm);transition:transform .25s ease,box-shadow .3s ease}
+.step:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:var(--shadow)}
+.step .num{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--px);font-weight:700;font-size:17px;color:var(--btn-ink);background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 3px 0 var(--gold-deep);margin-bottom:14px}
+.step:nth-child(2) .num{background:linear-gradient(180deg,#8ad9f5,var(--cyan));box-shadow:0 3px 0 #14607a}
+.step:nth-child(3) .num{background:linear-gradient(180deg,#b39cff,var(--violet));box-shadow:0 3px 0 #5c3fae;color:#fff}
+.step:nth-child(4) .num{background:linear-gradient(180deg,#9df3b8,var(--mint));box-shadow:0 3px 0 #10663f}
+.step h3{font-size:17px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.loopline{margin-top:34px;background:var(--glass);border:1.5px solid var(--line);border-radius:16px;padding:20px 26px;font-weight:800;color:var(--gold);font-size:16px}
+.loopline small{display:block;font-weight:500;color:var(--muted);font-size:13.5px;margin-top:4px}
+
+/* ── realms ──────────────────────────────────────────── */
+.realms{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:46px}
+.realm{background:var(--glass2);border:1.5px solid var(--line);border-radius:16px;padding:20px 16px;position:relative;transition:transform .25s ease,box-shadow .3s ease}
+.realm:hover{transform:translateY(-5px);box-shadow:var(--shadow-sm)}
+.realm .ln{font-family:var(--px);font-size:22px;font-weight:700;color:var(--gold)}
+.realm h3{font-size:15.5px;margin:6px 0 4px}
+.realm p{font-size:12.5px;color:var(--muted)}
+.realm .bar{height:8px;border-radius:5px;background:var(--line);margin-top:14px;overflow:hidden}
+.realm .bar i{display:block;height:100%;width:0;border-radius:5px;background:repeating-linear-gradient(90deg,var(--gold) 0 7px,var(--gold2) 7px 11px);transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.realm.future{background:linear-gradient(165deg,var(--gold-soft),var(--glass2));border:1.5px dashed var(--gold)}
+.realm.future .ln{color:var(--gold)}
+.rnote{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;font-size:13.5px;color:var(--muted)}
+.rnote b{color:var(--ink)}
+
+/* ── evidence (mock report) ──────────────────────────── */
+.evi{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;margin-top:46px}
+.report{background:linear-gradient(180deg,var(--surface),var(--glass2));border:1.5px solid var(--line2);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+[data-env="night"] .report{background:linear-gradient(180deg,var(--surface),var(--glass))}
+.report .rh{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
+.report .rh .t{font-size:12px;color:var(--muted);font-weight:600}
+.report .rh h3{font-size:19px;margin:2px 0 4px}
+.report .ring{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;position:relative;flex:none;
+  background:conic-gradient(var(--mint) 0 264deg,var(--line) 264deg 360deg)}
+.report .ring::before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--surface)}
+.report .ring b{position:relative;font-family:var(--px);font-size:24px;color:var(--mint)}
+.comp{margin:16px 0;padding:14px 16px;border-radius:14px;background:var(--glass);border:1.5px solid var(--line)}
+.comp .ch{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.comp .ch b{font-weight:800}
+.comp .ch .sc{font-family:var(--px);color:var(--mint);font-weight:700}
+.comp .bar{height:9px;border-radius:5px;background:var(--line);margin:9px 0 8px;overflow:hidden}
+.comp .bar i{display:block;height:100%;width:88%;border-radius:5px;background:linear-gradient(90deg,var(--mint),var(--cyan))}
+.comp .q{font-size:13px;color:var(--muted);border-left:3px solid var(--mint);padding-left:10px}
+.comp .q b{color:var(--ink)}
+.comp .v{font-family:var(--px);font-size:9.5px;color:var(--mint);letter-spacing:.06em;margin-top:5px;display:flex;gap:6px;align-items:center}
+.verdicts{display:grid;gap:14px}
+.v-row{display:flex;gap:14px;align-items:flex-start;background:var(--glass);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;transition:transform .2s ease}
+.v-row:hover{transform:translateX(6px)}
+.v-row .pill{flex:none;font-family:var(--px);font-size:10px;letter-spacing:.05em;padding:7px 12px;border-radius:9px;margin-top:2px}
+.v-row p{font-size:13.5px;color:var(--muted)}
+.v-row b{color:var(--ink);display:block;font-size:14.5px;margin-bottom:2px}
+.pill.ok{background:var(--mint-soft);color:var(--mint);border:1.5px solid var(--mint)}
+.pill.part{background:var(--gold-soft);color:var(--gold);border:1.5px solid var(--gold)}
+.pill.no{background:var(--coral-soft);color:var(--coral);border:1.5px solid var(--coral)}
+.pill.abs{background:var(--violet-soft);color:var(--violet);border:1.5px solid var(--violet)}
+
+/* ── night proof ─────────────────────────────────────── */
+.night{background:linear-gradient(170deg,#101a3c,#16244e 55%,#1d2f5e);color:#eaf2ff;border-top:1.5px solid rgba(157,180,232,.18);border-bottom:1.5px solid rgba(157,180,232,.18);position:relative;overflow:hidden}
+.night .kicker{color:#6fe5a8}
+.night .sub{color:#9db4e8}
+.night .stars i{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:.7;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.15}}
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.proof .b{background:rgba(255,255,255,.06);border:1.5px solid rgba(157,180,232,.22);border-radius:16px;padding:22px}
+.proof .b .n{font-family:var(--px);font-size:30px;color:#6fe5a8}
+.proof .b .l{font-size:12.5px;color:#9db4e8;margin-top:6px}
+.night ul{list-style:none;margin-top:8px}
+.night li{padding:11px 0 11px 26px;position:relative;font-size:14.5px;color:#dfe6fb;border-bottom:1px solid rgba(157,180,232,.14)}
+.night li::before{content:"▸";position:absolute;left:2px;color:#6fe5a8;font-weight:800}
+
+/* ── pilot + adoption ────────────────────────────────── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:44px}
+.row{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.row b{min-width:200px;font-size:14.5px}
+.row span{font-size:13.5px;color:var(--muted)}
+.pillnote{margin-top:26px;display:inline-flex;gap:8px;flex-wrap:wrap}
+.p .num{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--px);font-weight:700;font-size:17px}
+
+/* ── footer ──────────────────────────────────────────── */
+footer{background:linear-gradient(170deg,#101a3c,#0c1330);color:#9db4e8;padding:56px 0 40px;position:relative;overflow:hidden}
+footer .wm{position:absolute;right:-20px;bottom:-60px;font-size:200px;font-weight:800;color:rgba(255,255,255,.04);line-height:1;user-select:none}
+footer .cta-band{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;background:rgba(255,255,255,.05);border:1.5px solid rgba(157,180,232,.22);border-radius:22px;padding:34px 38px;margin-bottom:44px}
+footer .cta-band h3{color:#fff;font-size:clamp(20px,3vw,28px);max-width:560px}
+footer .cta-band h3 em{font-style:normal;color:#6fe5a8}
+footer .cols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-size:13.5px}
+footer b{color:#fff}
+
+/* ── responsive ──────────────────────────────────────── */
+@media(max-width:980px){
+  .hero .wrap{grid-template-columns:1fr}
+  .ticket{max-width:480px}
+  .band .cols,.path,.realms,.proof{grid-template-columns:1fr 1fr}
+  .evi,.two{grid-template-columns:1fr;gap:30px}
+  nav .links a:not(.btn){display:none}
+  .path::before{display:none}
+}
+@media(max-width:600px){
+  .band .cols,.path,.realms,.proof{grid-template-columns:1fr}
+  section{padding:70px 0}
+  .ticket{grid-template-columns:1fr}
+  .ticket .stub{display:none}
+  .env{display:none}
+  .i2,.i3{display:none}
+  .i1{top:2%;left:2%;opacity:.8}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="orbs" aria-hidden="true"><span class="o1"></span><span class="o2"></span><span class="o3"></span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="mark">अ</span>
+      <span><b>Abhyas</b><small>पढ़ाने से पहले अभ्यास</small></span>
+    </a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#realms">Realms</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#built">V0</a>
+      <div class="env" id="envBtns" role="group" aria-label="Preview environments">
+        <button data-e="day" class="on" type="button">Day</button><button data-e="dusk" type="button">Dusk</button><button data-e="night" type="button">Night</button>
+      </div>
+      <button class="lang-btn" id="langBtn" type="button">हिंदी</button>
+      <a class="btn primary px" href="/#/onboarding">Press Start ▶</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="layer l1"><span class="sun"></span></div>
+  <div class="layer l2">
+    <span class="island i1" data-px='["#63e08e","#3fae6b","#8a5f3c","#5d3a20",12]'></span>
+    <span class="island i2" data-px='["#63e08e","#3fae6b","#8a5f3c","#5d3a20",10]'></span>
+    <span class="island i3" data-px='["#63e08e","#3fae6b","#8a5f3c","#5d3a20",12]'></span>
+    <span class="cloud c1" data-px='["#ffffff","#dbe7ff","#ffffff","#dbe7ff",16]'></span>
+    <span class="cloud c2" data-px='["#ffffff","#dbe7ff","#ffffff","#dbe7ff",12]'></span>
+    <span class="cloud c3" data-px='["#ffffff","#dbe7ff","#ffffff","#dbe7ff",10]'></span>
+  </div>
+  <div class="wrap">
+    <div class="layer l3" style="position:relative;inset:auto">
+      <span class="chip">Seva First Innovation Challenge · South Zone</span>
+      <h1>Practise before<br>you <em>teach</em>.</h1>
+      <div class="tag"><span class="px">अभ्यास</span> — the flight simulator for teaching</div>
+      <p class="lead">An AI practice layer where government-school teachers rehearse real classroom moments — by voice, with a simulated student — get evidence-based feedback, and try again. Before facing real children.</p>
+      <div class="badges">
+        <span class="chip">Maths · Classes 1–3</span>
+        <span class="chip">Voice-first</span>
+        <span class="chip gold">Working V0 prototype</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="/#/onboarding">Start practising ▶</a>
+        <a class="btn ghost" href="#built">What's already built</a>
+      </div>
+      <div class="team">Team <b>CogniX</b> · <b>SEVA31417</b> · <span class="px">SEVA FIRST 2026</span></div>
+    </div>
+    <div class="glowcard">
+      <article class="ticket" id="ticket">
+        <div class="body">
+          <div class="top">
+            <span class="quest">QUEST 103</span>
+            <span class="topic">हासिल के साथ जोड़</span>
+            <span class="turns">⏱ 3 TURNS</span>
+          </div>
+          <div class="student">
+            <span class="av">A</span>
+            <div>
+              <span>ANU · AGE 8 · eager · quick to guess</span>
+              <p>"मैडम, 47 और 26 जोड़ो... मुझे 613 आया! देखिए — 4+2 है 6, और 7+6 है 13। तो 613!"</p>
+            </div>
+          </div>
+          <div class="meta">
+            <span class="lvl">L1</span>
+            <span class="tagz"><i>तथ्यात्मक सटीकता</i><i>स्पष्टता</i></span>
+          </div>
+          <a class="cta2" href="/#/onboarding">🎙 5 मिनट का अभ्यास शुरू करें →</a>
+        </div>
+        <div class="stub"><span class="admit">ADMIT ONE</span><span class="barcode"></span></div>
+      </article>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="problem">
+  <div class="wrap">
+    <div class="kicker reveal">The problem</div>
+    <h2 class="reveal">Training ends. Practice never begins.</h2>
+    <p class="sub reveal">India trains teachers at scale, then stops exactly where teaching skill is formed. Teaching is a performance skill — yet it is the one performance profession with no rehearsal.</p>
+    <div class="cols" style="margin-top:44px">
+      <div class="stat reveal"><div class="n" data-count="5.15" data-suffix="M">0</div><div class="l">teachers in government schools</div></div>
+      <div class="stat reveal"><div class="n" data-count="121.6" data-suffix="M">0</div><div class="l">children in their classrooms</div></div>
+      <div class="stat reveal"><div class="n" data-count="0" data-prefix="6–10 " data-suffix="days">0</div><div class="l">of in-service training a year — with little planned classroom follow-up</div></div>
+    </div>
+    <p class="srcnote reveal">Sources: UDISE+ Report 2024–25, Ministry of Education; IDR (2024).</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker reveal">How Abhyas works</div>
+    <h2 class="reveal">A four-step practice loop</h2>
+    <p class="sub reveal">Safe to fail, targeted to improve, gated by demonstrated competency — not sessions completed.</p>
+    <div class="path">
+      <div class="step reveal"><div class="num">1</div><h3>Practice</h3><p>A scenario from the teacher's own class, subject and language — curriculum-scoped.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3>Simulate</h3><p>An AI student answers back, and pushes back, like a real child with real misconceptions.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3>Evaluate</h3><p>A separate scorer grades against a fixed rubric, quoting the teacher's own words.</p></div>
+      <div class="step reveal"><div class="num">4</div><h3>Retry</h3><p>The next scenario targets the measured weakest skill — until mastery unlocks the level.</p></div>
+    </div>
+    <div class="loopline reveal">Simulate → Interact → Evaluate → Identify gaps → Improve → Practise again
+      <small>Persona isolation: the student who challenges you never grades you. Separate instructions, separate model calls — enforced by tests.</small>
+    </div>
+  </div>
+</section>
+
+<section id="realms" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker reveal">How teachers progress</div>
+    <h2 class="reveal">One skill at a time — then integrate</h2>
+    <div class="realms">
+      <div class="realm reveal"><div class="ln">L1</div><h3>Accuracy</h3><p>Facts and curriculum alignment</p><div class="bar"><i data-w="88"></i></div></div>
+      <div class="realm reveal"><div class="ln">L2</div><h3>Clarity</h3><p>An explanation a child of that age can follow</p><div class="bar"><i data-w="72"></i></div></div>
+      <div class="realm reveal"><div class="ln">L3</div><h3>Misconceptions</h3><p>Surface the belief before correcting it</p><div class="bar"><i data-w="54"></i></div></div>
+      <div class="realm reveal"><div class="ln">L4</div><h3>Questioning</h3><p>Probing that invites curiosity, not guess-the-answer</p><div class="bar"><i data-w="38"></i></div></div>
+      <div class="realm future reveal"><div class="ln">L5+</div><h3>Integrated</h3><p>All competencies, weighted like a real lesson</p><div class="bar"><i data-w="20"></i></div></div>
+    </div>
+    <div class="rnote reveal">
+      <span><b>~10 scenarios per level</b> — curated against the rubric</span>
+      <span><b>Fixed bar, flexible practice</b> — passes across distinct scenarios unlock the level; retries are private</span>
+      <span><b>NPST-aligned</b> — experts set the standard; the AI cannot invent criteria</span>
+    </div>
+  </div>
+</section>
+
+<section id="evidence" style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker reveal">Evidence-based evaluation</div>
+    <h2 class="reveal">Feedback from your own words</h2>
+    <p class="sub reveal">A separate scorer grades against an expert-set rubric and must quote the teacher verbatim. A convincing-sounding answer is never mistaken for competence.</p>
+    <div class="evi">
+      <div class="report reveal tilt" id="report">
+        <div class="rh">
+          <div><span class="t">✦ क्वेस्ट पूरा · हासिल के साथ जोड़ · L1</span><h3>आपके अपने शब्दों से प्रतिक्रिया</h3><span class="t">स्तर पार हुआ · rubric npst-fln-core v1.0.0</span></div>
+          <div class="ring"><b>75</b></div>
+        </div>
+        <div class="comp">
+          <div class="ch"><b>तथ्यात्मक सटीकता</b><span class="sc">88</span></div>
+          <div class="bar"><i></i></div>
+          <div class="q">"<b>तो 47 और 26 = 73।</b>" — आपके शब्द, बारी 2</div>
+          <div class="v">✓ सत्यापित उद्धरण · trust 76%</div>
+        </div>
+        <div class="comp">
+          <div class="ch"><b>स्पष्टता</b><span class="sc">85</span></div>
+          <div class="bar"><i style="width:85%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></i></div>
+          <div class="q">"<b>चलो बत्ती से दिखाते हैं — 4 बंडल…</b>" — आपके शब्द, बारी 2</div>
+          <div class="v">✓ सत्यापित उद्धरण · trust 63%</div>
+        </div>
+      </div>
+      <div class="verdicts">
+        <div class="v-row reveal"><span class="pill ok">DEMONSTRATED</span><div><b>Quoted, re-verified, correct</b><p>Every score must cite the teacher's verbatim words — a second pass re-checks each quote.</p></div></div>
+        <div class="v-row reveal"><span class="pill part">PARTIAL</span><div><b>Right direction, incomplete reasoning</b><p>Partial understanding is named honestly, never rounded up.</p></div></div>
+        <div class="v-row reveal"><span class="pill no">INCORRECT</span><div><b>A misstatement — cited with evidence</b><p>Fabricated evidence lowers confidence and forces abstention.</p></div></div>
+        <div class="v-row reveal"><span class="pill abs">INSUFFICIENT → ABSTAIN</span><div><b>No score movement, honest reason</b><p>Thin evidence marks the attempt provisional instead of guessing.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="night" id="built">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="kicker reveal">Proof of build</div>
+    <h2 class="reveal">A working V0 already runs the full loop</h2>
+    <p class="sub reveal">Not a mockup — a voice-first rehearsal player with evidence-cited feedback, offline support, and a calibration harness that keeps the AI honest against experts.</p>
+    <div class="proof">
+      <div class="b reveal"><div class="n">72</div><div class="l">automated tests — engine, evidence, isolation, offline sync</div></div>
+      <div class="b reveal"><div class="n">MAE 0.066</div><div class="l">AI-vs-expert calibration error (gate: ≤ 0.25)</div></div>
+      <div class="b reveal"><div class="n">100%</div><div class="l">decision agreement with expert labels</div></div>
+      <div class="b reveal"><div class="n">6</div><div class="l">scenario packs — Maths + Hindi, Classes 1–3</div></div>
+    </div>
+    <div class="two">
+      <div>
+        <div class="kicker" style="color:#6fe5a8">What works today</div>
+        <ul>
+          <li>Voice-first rehearsal — speech-to-text in, text-to-speech out</li>
+          <li>"Heard me correctly" gate — the teacher reviews the transcript before scoring</li>
+          <li>Offline queue — attempts sync idempotently when connectivity returns</li>
+          <li>Deterministic engine — same attempt, same result, online or offline</li>
+        </ul>
+      </div>
+      <div>
+        <div class="kicker" style="color:#6fe5a8">Honest by design</div>
+        <ul>
+          <li>Runs with no API key — cloud models optional behind one interface</li>
+          <li>Attempts stay private; only k-anonymised cohort trends (n ≥ 5) are shared</li>
+          <li>27 themes, day-night environments — the gameverse changes with your clock</li>
+          <li>CI gate blocks regressions unless AI–expert agreement stays inside thresholds</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pilot">
+  <div class="wrap">
+    <div class="kicker reveal">Pilot and proof plan</div>
+    <h2 class="reveal">How we will prove it works</h2>
+    <div class="path" style="margin-top:44px">
+      <div class="p reveal" style="background:none;border:0;box-shadow:none;padding:0"><div class="num" style="margin-bottom:12px">1</div><h3 style="font-size:16.5px">Validate</h3><p class="sub" style="font-size:13.5px">Practising teachers review every competency, scenario and threshold.</p></div>
+      <div class="p reveal" style="background:none;border:0;box-shadow:none;padding:0"><div class="num" style="margin-bottom:12px;background:linear-gradient(180deg,#8ad9f5,var(--cyan));box-shadow:0 3px 0 #14607a">2</div><h3 style="font-size:16.5px">Calibrate</h3><p class="sub" style="font-size:13.5px">AI scores expert-labelled attempts — agreement measured, expert-blinded.</p></div>
+      <div class="p reveal" style="background:none;border:0;box-shadow:none;padding:0"><div class="num" style="margin-bottom:12px;background:linear-gradient(180deg,#b39cff,var(--violet));box-shadow:0 3px 0 #5c3fae;color:#fff">3</div><h3 style="font-size:16.5px">Pilot</h3><p class="sub" style="font-size:13.5px">10–20 teachers across 2–3 government schools.</p></div>
+      <div class="p reveal" style="background:none;border:0;box-shadow:none;padding:0"><div class="num" style="margin-bottom:12px;background:linear-gradient(180deg,#9df3b8,var(--mint));box-shadow:0 3px 0 #10663f">4</div><h3 style="font-size:16.5px">Scale</h3><p class="sub" style="font-size:13.5px">More languages, subjects and grades — offline use.</p></div>
+    </div>
+    <div class="two" style="margin-top:40px">
+      <div>
+        <h3 style="margin-bottom:12px">Who benefits</h3>
+        <div class="row"><b>Teachers, Classes 1–3</b><span>a private place to rehearse — without real children bearing the cost of practice</span></div>
+        <div class="row"><b>Children</b><span>teachers who spot misunderstandings and reward reasoning over memorised answers</span></div>
+        <div class="row"><b>DIETs &amp; SCERTs</b><span>anonymised trends show which competencies cohorts find hardest</span></div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Who can take it forward</h3>
+        <div class="row"><b>DIETs &amp; SCERTs</b><span>teacher access, pedagogical validation, pilot implementation</span></div>
+        <div class="row"><b>NCERT &amp; state departments</b><span>curriculum alignment, adoption pathways</span></div>
+        <div class="row"><b>DIKSHA</b><span>integration and distribution channel</span></div>
+        <div class="row"><b>FLN-focused NGOs</b><span>implementation and outreach</span></div>
+      </div>
+    </div>
+    <div class="pillnote reveal">
+      <span class="chip">Scenarios + rubrics are versioned content packs</span>
+      <span class="chip">Kannada first, then more languages — without a rebuild</span>
+      <span class="chip">Targets, not commitments</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wm">अभ्यास</div>
+  <div class="wrap">
+    <div class="cta-band">
+      <h3>Pilots don't learn to fly from a manual.<br><em>Every teacher deserves a safe place to practise before they teach.</em></h3>
+      <a class="btn primary" href="/#/onboarding">Press Start ▶</a>
+    </div>
+    <div class="cols">
+      <div><b>Team CogniX · SEVA31417</b><br>Seva First Innovation Challenge · South Zone</div>
+      <div>अभ्यास — practice before you teach</div>
+      <div>Maths · Classes 1–3 · Hindi first · Kannada next</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* pixel-art sprites via box-shadow */
+function px(el){
+  const cfg = JSON.parse(el.dataset.px); const [g,gd,b,r,s] = cfg;
+  const maps = {
+    island:[".....GGGGGg","...GGGGGGGg","..GGgGGGgGG",".DDDDDDDDDD",".BBBbBBBBBB","..BBBbBBBb.","...RRbBBb..","....RRbR..."],
+    cloud:["...WWWWW...",".WWWWWWWWW.","WWWWWWWWWWW",".WwwWWWwwW.","..wwwwwww.."]
+  };
+  const pal = el.classList.contains('cloud') ? {W:g,w:gd} : {G:g,D:gd,B:b,R:r};
+  const map = maps[el.classList.contains('cloud')?'cloud':'island'];
+  const sh=[]; map.forEach((row,y)=>{for(let x=0;x<row.length;x++){const ch=row[x];if(pal[ch])sh.push(`${x*s}px ${y*s}px 0 0 ${pal[ch]}`)}});
+  el.style.width=s+'px'; el.style.height=s+'px';
+  el.style.boxShadow=sh.join(',');
+}
+document.querySelectorAll('[data-px]').forEach(px);
+
+/* stars in night section */
+const st=document.querySelector('.stars');
+for(let i=0;i<40;i++){const s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=(Math.random()*3)+'s';st.appendChild(s);}
+
+/* env switcher — repaints the page like the app's time engine */
+const envBtns=document.querySelectorAll('#envBtns [data-e]');
+envBtns.forEach(b=>b.addEventListener('click',()=>{
+  document.documentElement.dataset.env=b.dataset.e;
+  envBtns.forEach(x=>x.classList.toggle('on',x===b));
+}));
+
+/* hero + ticket 3D */
+const hero=document.querySelector('.hero'),ticket=document.getElementById('ticket'),report=document.getElementById('report');
+[hero,ticket,report].forEach(el=>el.addEventListener('mousemove',e=>{
+  const r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+  el.style.setProperty('--ry',(px*6).toFixed(2)+'deg');el.style.setProperty('--rx',(-py*6).toFixed(2)+'deg');
+  el.style.setProperty('--gx',((px+.5)*100)+'%');el.style.setProperty('--gy',((py+.5)*100)+'%');
+}));
+[hero,ticket,report].forEach(el=>el.addEventListener('mouseleave',()=>{el.style.setProperty('--ry','0deg');el.style.setProperty('--rx','0deg')}));
+
+
+/* ── language toggle (EN / हिंदी) ─────────────────────────────────────── */
+const I18N = [
+  ['.hero h1', 0, 'Practise before<br>you <em>teach</em>.', 'पढ़ाने से<br>पहले <em>अभ्यास</em>।'],
+  ['.hero .tag', 0, '<span class="px">अभ्यास</span> — the flight simulator for teaching', '<span class="px">अभ्यास</span> — पढ़ाने का फ्लाइट सिम्युलेटर'],
+  ['.hero p.lead', 0, 'An AI practice layer where government-school teachers rehearse real classroom moments — by voice, with a simulated student — get evidence-based feedback, and try again. Before facing real children.', 'एक एआई अभ्यास परत जहाँ सरकारी स्कूलों की शिक्षिकाएँ असली क्लासरूम के पल — आवाज़ से, एक सिम्युलेटेड छात्रा के साथ — दोहराती हैं, सबूत के साथ फ़ीडबैक पाती हैं और दोबारा कोशिश करती हैं। असली बच्चों से मिलने से पहले।'],
+  ['.hero .badges .chip:nth-child(1)', 0, 'Maths · Classes 1–3', 'गणित · कक्षा 1–3'],
+  ['.hero .badges .chip:nth-child(2)', 0, 'Voice-first', 'आवाज़-प्रथम'],
+  ['.hero .badges .chip:nth-child(3)', 0, 'Working V0 prototype', 'चालू V0 प्रोटोटाइप'],
+  ['.hero .cta .btn.primary', 0, 'Start practising ▶', 'अभ्यास शुरू करें ▶'],
+  ['.hero .cta .btn.ghost', 0, "What's already built", 'क्या-क्या बना है'],
+  ['.kicker', 0, 'The problem', 'समस्या'],
+  ['#problem h2', 0, 'Training ends. Practice never begins.', 'प्रशिक्षण खत्म। अभ्यास कभी शुरू नहीं होता।'],
+  ['#problem .sub', 0, 'India trains teachers at scale, then stops exactly where teaching skill is formed. Teaching is a performance skill — yet it is the one performance profession with no rehearsal.', 'भारत शिक्षकों को बड़े पैमाने पर प्रशिक्षित करता है, फिर ठीक वहीं रुक जाता है जहाँ पढ़ाने का कौशल बनता है। पढ़ाना एक परफ़ॉर्मेंस कौशल है — फिर भी यह इकलौता परफ़ॉर्मेंस पेशा है जिसका कोई रिहर्सल नहीं।'],
+  ['.stat:nth-child(1) .l', 0, 'teachers in government schools', 'सरकारी स्कूलों में शिक्षक'],
+  ['.stat:nth-child(2) .l', 0, 'children in their classrooms', 'उनकी क्लासरूम में बच्चे'],
+  ['.stat:nth-child(3) .l', 0, 'of in-service training a year — with little planned classroom follow-up', 'सालाना इन-सर्विस प्रशिक्षण — बहुत कम कक्षा-अनुसरण'],
+  ['.kicker', 1, 'How Abhyas works', 'अभ्यास कैसे होता है'],
+  ['#how h2', 0, 'A four-step practice loop', 'चार-चरणीय अभ्यास लूप'],
+  ['#how .sub', 0, 'Safe to fail, targeted to improve, gated by demonstrated competency — not sessions completed.', 'सुरक्षित असफलता, लक्षित सुधार — रुकी दक्षता पर आधारित, पूरे किए सेशन पर नहीं।'],
+  ['.step h3', 0, 'Practice', 'अभ्यास'], ['.step h3', 1, 'Simulate', 'सिम्युलेट'], ['.step h3', 2, 'Evaluate', 'मूल्यांकन'], ['.step h3', 3, 'Retry', 'दोहराएँ'],
+  ['.step p', 0, "A scenario from the teacher's own class, subject and language — curriculum-scoped.", 'शिक्षक की अपनी कक्षा, विषय और भाषा का परिदृश्य — पाठ्यक्रम-सीमित।'],
+  ['.step p', 1, 'An AI student answers back, and pushes back, like a real child with real misconceptions.', 'एआई छात्रा जवाब देती है, और टकराती भी — असली ग़लतफ़हमी वाले असली बच्चे जैसी।'],
+  ['.step p', 2, "A separate scorer grades against a fixed rubric, quoting the teacher's own words.", 'अलग स्कोअर एक स्थिर रूब्रिक पर अंक देता है — शिक्षक के अपने शब्द उद्धृत करते हुए।'],
+  ['.step p', 3, 'The next scenario targets the measured weakest skill — until mastery unlocks the level.', 'अगला परिदृश्य सबसे कमज़ोर कौशल को लक्षित करता है — जब तक महारत स्तर खोल न दे।'],
+  ['.loopline', 0, 'Simulate → Interact → Evaluate → Identify gaps → Improve → Practise again', 'सिम्युलेट → बातचीत → मूल्यांकन → कमी पहचानें → सुधार → फिर अभ्यास'],
+  ['.loopline small', 0, 'Persona isolation: the student who challenges you never grades you. Separate instructions, separate model calls — enforced by tests.', 'पर्सोना आइसोलेशन: जो छात्रा चुनौती देती है, वही कभी अंक नहीं देती। अलग निर्देश, अलग मॉडल कॉल — टेस्ट से लागू।'],
+  ['.kicker', 2, 'How teachers progress', 'शिक्षक कैसे आगे बढ़ते हैं'],
+  ['#realms h2', 0, 'One skill at a time — then integrate', 'एक समय में एक कौशल — फिर सब एक साथ'],
+  ['.realm h3', 0, 'Accuracy', 'सटीकता'], ['.realm p', 0, 'Facts and curriculum alignment', 'तथ्य और पाठ्यक्रम'],
+  ['.realm h3', 1, 'Clarity', 'स्पष्टता'], ['.realm p', 1, 'An explanation a child of that age can follow', 'उस उम्र का बच्चा जिसे आसानी से समझे'],
+  ['.realm h3', 2, 'Misconceptions', 'भ्रांतियाँ'], ['.realm p', 2, 'Surface the belief before correcting it', 'सुधार से पहले सोच समझें'],
+  ['.realm h3', 3, 'Questioning', 'प्रश्न'], ['.realm p', 3, 'Probing that invites curiosity, not guess-the-answer', 'जिज्ञासा जगाने वाले प्रश्न, अंदाज़ा नहीं'],
+  ['.realm h3', 4, 'Integrated', 'समेकित'], ['.realm p', 4, 'All competencies, weighted like a real lesson', 'चारों कौशल, पाठ जैसे भारित'],
+  ['.rnote span', 0, '~10 scenarios per level — curated against the rubric', 'प्रति स्तर ~10 परिदृश्य — रूब्रिक के अनुसार'],
+  ['.rnote span', 1, 'Fixed bar, flexible practice — passes across distinct scenarios unlock the level; retries are private', 'स्थिर बार, लचीला अभ्यास — अलग-अलग पास स्तर खोलते हैं; दोहराएँ निजी'],
+  ['.rnote span', 2, 'NPST-aligned — experts set the standard; the AI cannot invent criteria', 'एनपीएसटी-संगत — मानक विशेषज्ञ तय करते हैं; एआई शर्तें नहीं बनाता'],
+  ['.kicker', 3, 'Evidence-based evaluation', 'सबूत आधारित मूल्यांकन'],
+  ['#evidence h2', 0, 'Feedback from your own words', 'फ़ीडबैक — आपके अपने शब्दों में'],
+  ['#evidence .sub', 0, 'A separate scorer grades against an expert-set rubric and must quote the teacher verbatim. A convincing-sounding answer is never mistaken for competence.', 'अलग स्कोअर विशेषज्ञ-निर्धारित रूब्रिक पर अंक देता है और शिक्षक के शब्द शब्दशः उद्धृत करना ज़रूरी है। पटु जवाब कभी दक्षता नहीं बन जाता।'],
+  ['.v-row b', 0, 'Quoted, re-verified, correct', 'उद्धृत, दोबारा जाँचा, सही'],
+  ['.v-row p', 0, 'Every score must cite the teacher\u2019s verbatim words — a second pass re-checks each quote.', 'हर अंक शिक्षक के शब्दशः उद्धरण से साबित होता है — दूसरा चरण हर उद्धरण फिर जाँचता है।'],
+  ['.v-row b', 1, 'Right direction, incomplete reasoning', 'सही दिशा, अधूरी सोच'],
+  ['.v-row p', 1, 'Partial understanding is named honestly, never rounded up.', 'आंशिक समझ को ईमानदारी से नाम दिया जाता है, कभी नहीं बढ़ाया।'],
+  ['.v-row b', 2, 'A misstatement — cited with evidence', 'ग़लत कथन — सबूत के साथ'],
+  ['.v-row p', 2, 'Fabricated evidence lowers confidence and forces abstention.', 'बनाया सबूत भरोसा गिराता है और परहेज़ पर मजबूर करता है।'],
+  ['.v-row b', 3, 'No score movement, honest reason', 'कोई अंक-बदलाव नहीं, ईमानदार कारण'],
+  ['.v-row p', 3, 'Thin evidence marks the attempt provisional instead of guessing.', 'पतला सबूत अंदाज़े की बजाय कोशिश को अस्थायी चिह्नित करता है।'],
+  ['.kicker', 4, 'Proof of build', 'प्रूफ़ ऑफ़ बिल्ड'],
+  ['#built h2', 0, 'A working V0 already runs the full loop', 'एक चालू V0 पहले से पूरा लूप चलाता है'],
+  ['#built .sub', 0, 'Not a mockup — a voice-first rehearsal player with evidence-cited feedback, offline support, and a calibration harness that keeps the AI honest against experts.', 'मॉकअप नहीं — आवाज़-प्रथम रिहर्सल प्लेयर, सबूत-संगत फ़ीडबैक, ऑफ़लाइन सहारा और एआई को ईमानदार रखने वाला कैलिब्रेशन हार्नेस।'],
+  ['.proof .b .l', 0, 'automated tests — engine, evidence, isolation, offline sync', 'स्वचालित टेस्ट — इंजन, सबूत, आइसोलेशन, ऑफ़लाइन सिंक'],
+  ['.proof .b .l', 1, 'AI-vs-expert calibration error (gate: <= 0.25)', 'एआई-बनाम-विशेषज्ञ कैलिब्रेशन त्रुटि (सीमा: 0.25)'],
+  ['.proof .b .l', 2, 'decision agreement with expert labels', 'विशेषज्ञ निर्णयों से सहमति'],
+  ['.proof .b .l', 3, 'scenario packs — Maths + Hindi, Classes 1–3', 'परिदृश्य पैक — गणित + हिंदी, कक्षा 1–3'],
+  ['.kicker', 5, 'What works today', 'आज जो चलता है'],
+  ['.kicker', 6, 'Honest by design', 'डिज़ाइन से ईमानदार'],
+  ['#pilot .kicker', 0, 'Pilot and proof plan', 'पायलट और प्रूफ़ योजना'],
+  ['#pilot h2', 0, 'How we will prove it works', 'हम इसे कैसे साबित करेंगे'],
+  ['.p h3', 0, 'Validate', 'जाँच'], ['.p p', 0, 'Practising teachers review every competency, scenario and threshold.', 'प्रत्येक कौशल, परिदृश्य और सीमा शिक्षक खुद जाँचते हैं।'],
+  ['.p h3', 1, 'Calibrate', 'कैलिब्रेट'], ['.p p', 1, 'AI scores expert-labelled attempts — agreement measured, expert-blinded.', 'एआई विशेषज्ञ-चिह्नित कोशिशों पर अंक देता है — सहमति मापी जाती है।'],
+  ['.p h3', 2, 'Pilot', 'पायलट'], ['.p p', 2, '10–20 teachers across 2–3 government schools.', '2–3 सरकारी स्कूलों में 10–20 शिक्षक।'],
+  ['.p h3', 3, 'Scale', 'विस्तार'], ['.p p', 3, 'More languages, subjects and grades — offline use.', 'और भाषाएँ, विषय, कक्षाएँ — ऑफ़लाइन उपयोग।'],
+  ['.two h3', 0, 'Who benefits', 'किसे फ़ायदा'],
+  ['.two h3', 1, 'Who can take it forward', 'कौन आगे ले जाएँ'],
+];
+const navHi = {'How it works':'कैसे काम करता है','Realms':'क्षेत्र','Evidence':'सबूत','V0':'V0'};
+let lang = localStorage.getItem('abhyas.lang') || 'en';
+function applyLang(){
+  for (const [sel, i, en, hi] of I18N){
+    const el = document.querySelectorAll(sel)[i || 0];
+    if (el) el.innerHTML = lang === 'hi' ? hi : en;
+  }
+  document.querySelectorAll('nav .links a').forEach(a => {
+    const en = a.dataset.en || a.textContent; a.dataset.en = a.dataset.en || a.textContent.trim();
+    if (navHi[a.dataset.en]) a.textContent = lang === 'hi' ? navHi[a.dataset.en] : a.dataset.en;
+  });
+  document.getElementById('langBtn').textContent = lang === 'en' ? 'हिंदी' : 'EN';
+}
+document.getElementById('langBtn').addEventListener('click', () => {
+  lang = lang === 'en' ? 'hi' : 'en';
+  localStorage.setItem('abhyas.lang', lang);
+  applyLang();
+});
+applyLang();
+
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('in');
+    if(e.target.classList.contains('stat')){const n=e.target.querySelector('.n');if(n&&!n.dataset.done){n.dataset.done=1;const end=parseFloat(n.dataset.count),pre=n.dataset.prefix||'',suf=n.dataset.suffix||'';let t0=null;const step=ts=>{t0=t0||ts;const p=Math.min((ts-t0)/1200,1);const dec=(n.dataset.count.split('.')[1]||'').length;n.textContent=pre+(end*p).toFixed(dec)+suf;if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}}
+    if(e.target.classList.contains('realm')){const b=e.target.querySelector('.bar i');if(b)setTimeout(()=>b.style.width=b.dataset.w+'%',150)}
+  }
+}),{threshold:.18});
+document.querySelectorAll('.reveal,.stat,.realm').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

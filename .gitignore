@@ -1,0 +1,37 @@
+# dependencies & build output
+node_modules/
+dist/
+__pycache__/
+
+# runtime data (seed/synthetic/production state never enters git)
+data/
+
+# secrets & logs
+.env
+.env.*
+*.log
+.DS_Store
+
+# generated heavy artifacts — kept on disk, never in the source repo
+*.mp4
+*.mov
+*.webm
+*.gif
+*.pdf
+*.pptx
+tmp/
+output/
+abhyas-final/
+demo-assets/footage/
+demo-assets/qa/
+demo-assets/qa2/
+demo-assets/video-v3/
+demo-assets/narration/
+demo-assets/fonts/
+demo-assets/__pycache__/
+demo-assets/*.png
+
+# one-off submission doc builds (PDF/video pipelines live outside the product repo)
+submission/*.pdf
+submission/*.mp4
+pitch-deck/Abhyas_Pitch.pptx

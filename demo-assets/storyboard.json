@@ -1,0 +1,87 @@
+{
+  "project": "Abhyas demo video — Team CogniX · SEVA31417",
+  "target": "<3:00 hackathon demo; delivered ~70s",
+  "fps": 30,
+  "canvas": "1920x1080",
+  "xfade": 0.7,
+  "scenes": [
+    {
+      "id": "s1",
+      "mode": "card",
+      "asset": "demo-assets/card-title.png",
+      "narration": "demo-assets/narration/s1.mp3",
+      "narrationDur": 8.09,
+      "sceneDur": 8.6,
+      "onScreen": "Abhyas · अभ्यास — practice before you teach · Team CogniX · SEVA31417"
+    },
+    {
+      "id": "s2",
+      "mode": "live",
+      "footageWindow": "0.0–8.6s of footage",
+      "caption": "demo-assets/cap-s2.png",
+      "narration": "demo-assets/narration/s2.mp3",
+      "narrationDur": 8.64,
+      "sceneDur": 9.2,
+      "visual": "App home: Level 1, Class 3 Maths, Hindi; tap 'practice this scenario'"
+    },
+    {
+      "id": "s3",
+      "mode": "live",
+      "footageWindow": "8.6–21.7s",
+      "caption": "demo-assets/cap-s3.png",
+      "narration": "demo-assets/narration/s3.mp3",
+      "narrationDur": 13.85,
+      "sceneDur": 14.4,
+      "visual": "Anu's misconception '3+3+3 = 9!'; teacher types group-counting correction; Anu replies"
+    },
+    {
+      "id": "s4",
+      "mode": "live",
+      "footageWindow": "21.7–32.4s",
+      "caption": "demo-assets/cap-s4.png",
+      "narration": "demo-assets/narration/s4.mp3",
+      "narrationDur": 11.14,
+      "sceneDur": 11.7,
+      "visual": "Transcript review gate; teacher confirms 'मैं पुष्टि करती हूँ…'"
+    },
+    {
+      "id": "s5",
+      "mode": "live",
+      "footageWindow": "32.4–44.1s",
+      "caption": "demo-assets/cap-s5.png",
+      "narration": "demo-assets/narration/s5.mp3",
+      "narrationDur": 10.15,
+      "sceneDur": 10.7,
+      "visual": "Score 88, verified quote from teacher's words, 'Level 1 cleared — welcome to Level 2'"
+    },
+    {
+      "id": "s6",
+      "mode": "live",
+      "footageWindow": "44.1–52.9s",
+      "caption": "demo-assets/cap-s6.png",
+      "narration": "demo-assets/narration/s6.mp3",
+      "narrationDur": 7.27,
+      "sceneDur": 7.8,
+      "visual": "Mastery map: level timeline, competency health bars"
+    },
+    {
+      "id": "s7",
+      "mode": "card",
+      "asset": "demo-assets/card-end.png",
+      "narration": "demo-assets/narration/s7.mp3",
+      "narrationDur": 11.74,
+      "sceneDur": 12.3,
+      "onScreen": "72 tests · MAE 0.066 · 100% agreement · L1→L2 · closing line"
+    }
+  ],
+  "evidence": {
+    "app": "npm run dev in ~/Desktop/edu (server :8787, web :5173)",
+    "calibration": "npm run calibration — MAE 0.066, decision agreement 100% (gate ≤0.25 / ≥70%)",
+    "tests": "npm test — 72 passed",
+    "levelUp": "same correct response scored 15 before fix, 88 + L1→L2 after (src/llm/mock/scorer.ts supersede rule + pack marker fixes)"
+  },
+  "audio": {
+    "voice": "en-IN-NeerjaNeural (edge-tts, rate +12%)",
+    "music": "synth bed from ~/Desktop/video-studio/audio-library (zero-license), sidechain-ducked"
+  }
+}

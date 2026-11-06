@@ -1,0 +1,113 @@
+{
+  "description": "Golden attempts for the AI-vs-experts calibration harness. Each attempt is a hand-authored rehearsal transcript with expert labels (as a teacher-educator would score it) and the decision an expert would make. The harness measures how close the scoring engine gets — this is the 'AI vs experts' step from the proof plan, runnable on every rubric or engine change.",
+  "version": "1.0.0",
+  "attempts": [
+    {
+      "id": "gold-sub-comm-strong",
+      "scenarioId": "maths-c3-l3-sub-commutativity",
+      "profile": "strong",
+      "expertScores": { "misconceptions": 0.9, "accuracy": 0.9, "clarity": 0.85 },
+      "expectedDecision": "pass",
+      "expertNotes": "She explored the belief first, restated it, used marbles to show taking-away, and never affirmed the wrong claim.",
+      "turns": [
+        { "role": "student", "text": "मैडम, अगर 5 − 3 है 2, तो 3 − 5 भी 2 क्यों नहीं? नंबर बदलने से जवाब नहीं बदलना चाहिए... है न?" },
+        { "role": "teacher", "text": "अनु, अच्छा सवाल! पहले ये बताओ — तुम्हें क्या लगता है, 3 में से 5 निकालें तो क्या होगा? तुम क्या सोच रही हो?" },
+        { "role": "student", "text": "पर जोड़ में 2+3 और 3+2 दोनों 5 हैं! घटाना अलग क्यों है?" },
+        { "role": "teacher", "text": "बहुत बढ़िया सोचा! देखो, जोड़ में चीज़ें जुड़ती हैं, घटाने में चीज़ें कम होती हैं। ये 3 गोलियाँ लो। अब इनमें से 5 गोलियाँ मुझे दो — क्या दे पाओगी?" },
+        { "role": "student", "text": "ओह... तो 3 से 5 नहीं निकल सकते। जितना है उतना ही दे सकती हूँ। 0 बचा!" }
+      ]
+    },
+    {
+      "id": "gold-sub-comm-weak",
+      "scenarioId": "maths-c3-l3-sub-commutativity",
+      "profile": "weak",
+      "expertScores": { "misconceptions": 0.2, "accuracy": 0.85, "clarity": 0.5 },
+      "expectedDecision": "retry",
+      "expertNotes": "The rule she stated is correct, but she never explored WHY the child thought swapping is fine — the belief survives.",
+      "turns": [
+        { "role": "student", "text": "मैडम, अगर 5 − 3 है 2, तो 3 − 5 भी 2 क्यों नहीं? नंबर बदलने से जवाब नहीं बदलना चाहिए... है न?" },
+        { "role": "teacher", "text": "नहीं बेटी, ऐसा नहीं होता। घटाने में चीज़ें कम होती हैं, इसलिए पहला नंबर बड़ा होना चाहिए। रट लो — बड़े से छोटा घटाओ।" },
+        { "role": "student", "text": "पर जोड़ में 2+3 और 3+2 दोनों 5 हैं! घटाना अलग क्यों है?" },
+        { "role": "teacher", "text": "जोड़ अलग चीज़ है, घटाना अलग। अगला सवाल देखो।" }
+      ]
+    },
+    {
+      "id": "gold-borrow-strong",
+      "scenarioId": "maths-c3-l5-integrated-borrowing",
+      "profile": "strong",
+      "expertScores": { "accuracy": 0.9, "misconceptions": 0.9, "clarity": 0.85, "questioning": 0.8 },
+      "expectedDecision": "pass",
+      "expertNotes": "Acknowledged her trick, questioned what flipping would mean, rebuilt the problem with bundles, and let her compute the answer herself.",
+      "turns": [
+        { "role": "student", "text": "मैडम, 42 − 27। इकाई: 2 − 7... नहीं होगा। तो उलट दिया — 7 − 2 = 5। जवाब 25? ज़ीरो से हीरो, है न?" },
+        { "role": "teacher", "text": "अनु, तुम्हारी चालाकी देखी मैंने — उलटकर घटा दिया! पर एक बात पूछती हूँ: अगर तुम्हारे पास 2 रुपये हों और मैं 5 रुपये माँगूँ, तो उलटकर तुम मुझे 5 दे पाओगी? सोचो।" },
+        { "role": "student", "text": "अगर 2 में से 7 नहीं घट सकता तो करूँ क्या? अरे — कहाँ से लूँ?" },
+        { "role": "teacher", "text": "सही पकड़ा! देखो, 42 में 4 गट्ठे बत्तियों के हैं और 2 खुली बत्तियाँ। एक गट्ठा तोड़ दो — अब 12 खुली बत्तियाँ हुईं। अब 12 में से 7 निकालो तो कितनी बचीं? और 3 गट्ठों में से 2 गट्ठे निकालो तो कितने गट्ठे बचे?" },
+        { "role": "student", "text": "ओह! एक दहाई उधार लिया — अब 12 − 7 = 5, और 3 दहाई − 2 दहाई = 1 दहाई। 15! 25 नहीं!" }
+      ]
+    },
+    {
+      "id": "gold-borrow-wrong",
+      "scenarioId": "maths-c3-l5-integrated-borrowing",
+      "profile": "wrong",
+      "expertScores": { "accuracy": 0.1, "misconceptions": 0.15, "clarity": 0.3, "questioning": 0.15 },
+      "expectedDecision": "redo",
+      "expertNotes": "She confirmed the flip trick and the wrong answer 25. This is the most damaging error a Class 3 maths teacher can make.",
+      "turns": [
+        { "role": "student", "text": "मैडम, 42 − 27। इकाई: 2 − 7... नहीं होगा। तो उलट दिया — 7 − 2 = 5। जवाब 25? ज़ीरो से हीरो, है न?" },
+        { "role": "teacher", "text": "हाँ अनु, 7 − 2 = 5 करके 25 लिखो। बिल्कुल सही! शाबाश!" }
+      ]
+    },
+    {
+      "id": "gold-add-zero-strong",
+      "scenarioId": "maths-c3-l4-probe-add-zero",
+      "profile": "strong",
+      "expertScores": { "questioning": 0.9, "misconceptions": 0.85 },
+      "expectedDecision": "pass",
+      "expertNotes": "She noticed the fast guess, asked how she knows, and made her prove the rule with chalk instead of accepting the pattern.",
+      "turns": [
+        { "role": "student", "text": "मैडम पता है! 8 + 0 = 8, 25 + 0 = 25, 100 + 0 = 100! ज़ीरो कुछ नहीं करता! देखा, सब कर दिया!" },
+        { "role": "teacher", "text": "अरे वाह, तुमने तो जल्दी जवाब दे दिया! पर ये बताओ — तुम्हें कैसे पता चला कि ज़ीरो कुछ नहीं करता? कोई चीज़ लेकर मुझे दिखाओ।" },
+        { "role": "student", "text": "हम्म... चॉक लेती हूँ। 8 चॉक और ज़ीरो चॉक मतलब आठ ही चॉक! क्योंकि जोड़ने को कुछ आया ही नहीं!" },
+        { "role": "teacher", "text": "शाबाश! अब खुद 25 + 0 को चॉक से दिखाओ।" }
+      ]
+    },
+    {
+      "id": "gold-add-zero-praise",
+      "scenarioId": "maths-c3-l4-probe-add-zero",
+      "profile": "weak",
+      "expertScores": { "questioning": 0.15, "misconceptions": 0.2 },
+      "expectedDecision": "redo",
+      "expertNotes": "Only praise. Whether the child truly understands or is pattern-matching stays unknown — the probe never happened.",
+      "turns": [
+        { "role": "student", "text": "मैडम पता है! 8 + 0 = 8, 25 + 0 = 25, 100 + 0 = 100! ज़ीरो कुछ नहीं करता! देखा, सब कर दिया!" },
+        { "role": "teacher", "text": "शाबाश! बहुत अच्छे! सब सही किया! अगला सवाल।" }
+      ]
+    },
+    {
+      "id": "gold-ka-kha-strong",
+      "scenarioId": "hindi-c2-l2-ka-kha",
+      "profile": "strong",
+      "expertScores": { "clarity": 0.9 },
+      "expectedDecision": "pass",
+      "expertNotes": "Throat-feel demonstration, familiar words (kamal, khargosh), and the child got to say both sounds herself.",
+      "turns": [
+        { "role": "student", "text": "टीचर, ये 'क' और 'ख' में क्या फ़र्क़ है? दोनों मुझे एक जैसे लगते हैं।" },
+        { "role": "teacher", "text": "देखो अनु, अपना हाथ मेरे गले पर रखो। बोलो 'क' — कमल का क। अब बोलो 'ख' — खरगोश का ख। 'ख' में हवा ज़ोर से निकलती है, जैसे मोमबत्ती बुझाते हैं। अब तुम बोलकर देखो — 'क'... 'ख'। महसूस हुआ? ख में हवा का फुस्स!" },
+        { "role": "student", "text": "ओह! 'ख' में साँस निकली! 'क' में नहीं। मैं फिर बोलूँ? कमल... खरगोश!" }
+      ]
+    },
+    {
+      "id": "gold-ka-kha-jargon",
+      "scenarioId": "hindi-c2-l2-ka-kha",
+      "profile": "weak",
+      "expertScores": { "clarity": 0.25 },
+      "expectedDecision": "redo",
+      "expertNotes": "Grammar-book labels for a 7-year-old. Nothing she can hear, feel or repeat.",
+      "turns": [
+        { "role": "student", "text": "टीचर, ये 'क' और 'ख' में क्या फ़र्क़ है? दोनों मुझे एक जैसे लगते हैं।" },
+        { "role": "teacher", "text": "ख महाप्राण व्यंजन है और क अल्पप्राण। ध्वनि विज्ञान में इसे aspirated कहते हैं। याद रखो।" }
+      ]
+    }
+  ]
+}

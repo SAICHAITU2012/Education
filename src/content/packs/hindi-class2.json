@@ -1,0 +1,194 @@
+[
+  {
+    "id": "hindi-c2-l2-ka-kha",
+    "version": "1.0.0",
+    "pack": "hindi-class2",
+    "level": 2,
+    "language": "hi",
+    "curriculum": { "class": 2, "subject": "hindi", "topic": "varnamala — क vs ख", "ncertRef": "Rimjhim 2, वर्णमाला" },
+    "competencies": ["clarity"],
+    "title": { "en": "'क' and 'ख' — what's the difference?", "hi": "'क' और 'ख' में क्या फ़र्क़ है?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 7,
+      "traits": ["sharp ears", "likes sounds"],
+      "opening": { "en": "Teacher, ye 'क' aur 'ख' mein kya fark hai? Dono same lagte hain mujhe.", "hi": "टीचर, ये 'क' और 'ख' में क्या फ़र्क़ है? दोनों मुझे एक जैसे लगते हैं।" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["letters", "sounds", "aspiration in everyday words"],
+        "mustNotReveal": ["the 'puff of air' explanation unless the teacher gives it"],
+        "exitCondition": "Student can hear and repeat the difference with one example word."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "क्यों", "why", "how"],
+      "surfaceMarkers": ["सुनो", "suno", "सुनकर", "बोलकर देखो", "bolke dekho", "try", "करके देखो"],
+      "correctMarkers": ["हवा", "hawa", "air", "साँस", "saans", "breath", "ज़ोर", "zor", "फुस्स", "fuss", "गले", "gale", "ठंड", "thand", "कपड़े"],
+      "exampleWords": ["हाथ", "haath", "कमल", "kamal", "खरगोश", "khargosh", "कबूतर", "kabutar", "साँस", "breath"],
+      "jargonBlacklist": ["aspirated", "महाप्राण", "alghosh", "घोष", "phonetics", "ध्वनि विज्ञान"],
+      "wrongFactMarkers": ["बिल्कुल एक", "same hi", "कोई फर्क नहीं"],
+      "correctFactMarkers": ["हवा", "hawa", "साँस", "ज़ोर", "फुस्स", "अलग आवाज़"]
+    },
+    "expectedBehaviors": [
+      { "competency": "clarity", "behavior": { "en": "Show with hand-on-throat / candle-in-front examples: 'ख' carries a puff of air.", "hi": "हाथ-गले/मोमबत्ती के उदाहरण से दिखाएँ: 'ख' में हवा का फुस्स आता है।" } }
+    ]
+  },
+  {
+    "id": "hindi-c2-l2-matra-i-length",
+    "version": "1.0.0",
+    "pack": "hindi-class2",
+    "level": 2,
+    "language": "hi",
+    "curriculum": { "class": 2, "subject": "hindi", "topic": "मात्रा — इ vs ई", "ncertRef": "Rimjhim 2, मात्राओं का ज्ञान" },
+    "competencies": ["clarity"],
+    "title": { "en": "'इ' vs 'ई' — only a line different?", "hi": "'इ' और 'ई' — बस एक लकीर का फ़र्क़?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 7,
+      "traits": ["careful", "worries about mistakes"],
+      "opening": { "en": "Ma'am, 'नल' and 'नील' — they look almost same! Only one line. Does the line really change the sound?", "hi": "मैडम, 'नल' और 'नील' — लगभग एक जैसे! बस एक लकीर। लकीर से आवाज़ सच में बदल जाती है?" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["matras", "short and long sounds", "word meanings"],
+        "mustNotReveal": ["that ई is a longer 'ee' sound"],
+        "exitCondition": "Student reads both words correctly and says the sound stretches."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "why", "how"],
+      "surfaceMarkers": ["सुनो", "suno", "बोलो", "bolo", "देखो", "dekho", "तुलना", "compare"],
+      "correctMarkers": ["लंबा", "lamba", "long", "लंबी", "lambi", "खींचो", "kheencho", "stretch", "देर", "der", "लमहा"],
+      "exampleWords": ["नल", "nal", "नील", "neel", "दिन", "दीन", "मिट्टी", "होंठ", "लकीर", "line"],
+      "jargonBlacklist": ["ह्रस्व", "hrasva", "दीर्घ", "deergh", "vowel length", "स्वर की मात्रा"],
+      "wrongFactMarkers": ["एक जैसा", "same", "कोई फर्क नहीं"],
+      "correctFactMarkers": ["लंबा", "lamba", "लंबी", "खींच", "लमहा", "देर तक"]
+    },
+    "expectedBehaviors": [
+      { "competency": "clarity", "behavior": { "en": "Make her SAY both words and feel the stretched sound — not just be told.", "hi": "दोनों शब्द बोलवाएँ — आवाज़ खिंचना महसूस करवाएँ, बताने भर नहीं।" } }
+    ]
+  },
+  {
+    "id": "hindi-c2-l3-pi-matra-order",
+    "version": "1.0.0",
+    "pack": "hindi-class2",
+    "level": 3,
+    "language": "hi",
+    "curriculum": { "class": 2, "subject": "hindi", "topic": "ि मात्रा का क्रम", "ncertRef": "Rimjhim 2, मात्रा 'ि'" },
+    "competencies": ["misconceptions", "clarity"],
+    "title": { "en": "'पिता' — the ि comes first, so is it 'इप्ता'?", "hi": "'पिता' — ि पहले लिखा है, तो 'इप्ता'?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 7,
+      "traits": ["logical", "notices patterns"],
+      "opening": { "en": "Ma'am, in 'पिता' the ि is written BEFORE 'प'. So when I read, 'इ' should come first — 'इप्ता'? But everyone says 'पिता'!", "hi": "मैडम, 'पिता' में ि 'प' से पहले लिखा है। तो पढ़ते समय 'इ' पहले आए — 'इप्ता'? पर सब 'पिता' क्यों बोलते हैं!" },
+      "misconception": {
+        "id": "matra-write-order-equals-sound-order",
+        "belief": { "en": "the letter you write first is the sound you say first", "hi": "जो अक्षर पहले लिखा जाता है, उसकी आवाज़ भी पहले आती है" },
+        "resistance": [
+          { "en": "But writing first means saying first, no? That's the rule everywhere else!", "hi": "पर पहले लिखो तो पहले बोलो — बाकी सब में तो ऐसा ही है!" },
+          { "en": "It feels like Hindi tricks me. Writing one way, saying another...", "hi": "लगता है हिंदी धोखा देती है। लिखो एक तरह, बोलो दूसरी..." }
+        ],
+        "concession": { "en": "Ohh! The ि just SITS before, but when I speak — 'प्' + 'इ' = 'पि'. Writing and speaking are two different things!", "hi": "ओह! ि बस आगे बैठता है, पर बोलते समय — 'प्' + 'इ' = 'पि'। लिखना और बोलना दो अलग बातें!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["मात्रा ि", "reading order", "writing convention"],
+        "mustNotReveal": ["that मात्रा ि is written before but spoken after"],
+        "exitCondition": "Student reads 'पिता' correctly and explains the writing vs speaking difference."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्यों", "kyun", "कैसे", "kaise", "why", "how"],
+      "surfaceMarkers": ["लिखा पहले", "likha pehle", "बोलने में", "bolne mein", "अलग लगता", "ajeeb", "धोखा", "सोचो", "socho"],
+      "correctMarkers": ["बाद में", "baad mein", "after", "पढ़ते", "padhte", "बोलते", "bolte", "शब्द", "shabd", "मिलकर", "milkar", "जोड़", "प् इ"],
+      "exampleWords": ["पिता", "pita", "गिरा", "मिठाई", "सितार", "पढ़ना", "बोलना"],
+      "jargonBlacklist": ["क्रम", "sequence rule", "उच्चारण क्रम", "consonant cluster"],
+      "wrongFactMarkers": ["इप्ता", "हाँ पहले", "haan pehle", "bilkul sahi"],
+      "correctFactMarkers": ["बाद में", "baad", "पढ़ते", "बोलते", "मिलकर", "प् इ"]
+    },
+    "expectedBehaviors": [
+      { "competency": "misconceptions", "behavior": { "en": "First acknowledge the pattern she spotted — it IS a real writing convention — then show reading order.", "hi": "उसका देखा पैटर्न पहले स्वीकार करें — वो लिखावट का असली नियम है — फिर पढ़ाई का क्रम दिखाएँ।" } },
+      { "competency": "clarity", "behavior": { "en": "Blend it aloud: 'प्' + 'इ' = 'पि', like joining sounds.", "hi": "आवाज़ें जोड़कर बोलें: 'प्' + 'इ' = 'पि'।" } }
+    ]
+  },
+  {
+    "id": "hindi-c2-l4-probe-reading",
+    "version": "1.0.0",
+    "pack": "hindi-class2",
+    "level": 4,
+    "language": "hi",
+    "curriculum": { "class": 2, "subject": "hindi", "topic": "शब्द पहचान और तोड़", "ncertRef": "Rimjhim 2, शब्द पढ़ाई" },
+    "competencies": ["questioning"],
+    "title": { "en": "She read 'राम' fast — how does she know?", "hi": "'राम' फुर्र से पढ़ लिया — पता कैसे चला?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 7,
+      "traits": ["memorises shapes", "not always aware"],
+      "opening": { "en": "Ma'am, रा-म! राम! I know it! (But if you ask me which letters made it... I just KNOW it, that's all.)", "hi": "मैडम, रा-म! राम! पता है मुझे! (पर अक्षर पूछो तो... बस पता है, बस!)" },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["reading", "breaking words", "matras"],
+        "mustNotReveal": ["how to break रा into र + ा"],
+        "exitCondition": "Student breaks 'राम' or 'कमल' into letters herself."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "कैसे पता", "kaise pata", "कौन से", "kaun se", "which", "how", "बताओ", "batao", "तोड़ो", "todo"],
+      "surfaceMarkers": ["फुर्र", "furrr", "जल्दी", "jaldi", "बस पता", "bas pata", "याद", "yaad"],
+      "correctMarkers": ["तोड़", "todo", "break", "अक्षर", "akshar", "letter", "र", "आ", "मात्रा", "matra", "बताओ", "जोड़ो", "jodo"],
+      "exampleWords": ["राम", "ram", "कमल", "kamal", "माला", "maala", "अक्षर", "letter"],
+      "jargonBlacklist": ["decoding", "phonics", "डिकोडिंग", "ध्वनि विश्लेषण"],
+      "wrongFactMarkers": ["शाबाश", "very good", "बहुत अच्छे", "sahi jawab"],
+      "correctFactMarkers": ["कैसे पता", "तोड़", "अक्षर", "कौन से", "बताओ", "जोड़ो"]
+    },
+    "expectedBehaviors": [
+      { "competency": "questioning", "behavior": { "en": "Ask HOW she knows and ask her to break the word — make her thinking visible.", "hi": "कैसे पता चला पूछें, शब्द तोड़वाएँ — सोच दिखे।" } }
+    ]
+  },
+  {
+    "id": "hindi-c2-l5-integrated-word-family",
+    "version": "1.0.0",
+    "pack": "hindi-class2",
+    "level": 5,
+    "language": "hi",
+    "curriculum": { "class": 2, "subject": "hindi", "topic": "आ मात्रा शब्द-परिवार", "ncertRef": "Rimjhim 2, 'आ' की मात्रा" },
+    "competencies": ["accuracy", "clarity", "questioning", "misconceptions"],
+    "title": { "en": "Word family with 'आ': माला, काला, बाल", "hi": "'आ' से शब्द-परिवार: माला, काला, बाल" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 7,
+      "traits": ["likes making words", "curious"],
+      "opening": { "en": "Ma'am, 'माला' mein 'आ' kahan se aaya? म + आ = मा... but why is the line after the letter?", "hi": "मैडम, 'माला' में 'आ' कहाँ से आया? म + आ = मा... पर वो लकीर अक्षर के बाद क्यों है?" },
+      "misconception": {
+        "id": "matra-position-random",
+        "belief": { "en": "matra placement looks random — sometimes before, sometimes after", "hi": "मात्रा कहीं भी लग जाती है — कभी पहले, कभी बाद" },
+        "resistance": [
+          { "en": "ि sat before, ा sits after... Hindi just does whatever it wants!", "hi": "ि पहले बैठा, ा बाद में... हिंदी जी मर्ज़ी करती है!" },
+          { "en": "How do I know where to put it when I write? I always get it wrong.", "hi": "लिखते समय डालूँ कहाँ? मेरी हमेशा गलत होती है।" }
+        ],
+        "concession": { "en": "Ohh! ि is the special one who sits early. ा always sits after. Now I see the pattern!", "hi": "ओह! ि ही स्पेशल है जो आगे बैठता है। ा हमेशा बाद बैठती है। अब पैटर्न दिखा!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["आ matra", "word families", "reading"],
+        "mustNotReveal": ["the ि-is-special rule unless the teacher surfaces it"],
+        "exitCondition": "Student builds का, बा, रा herself and reads them."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "कैसे", "kaise", "क्यों", "kyun", "why", "how", "खुद बनाओ", "khud banao"],
+      "surfaceMarkers": ["कहीं भी", "kahin bhi", "random", "मर्ज़ी", "marzi", "पैटर्न", "pattern", "सोचो"],
+      "correctMarkers": ["बाद", "baad", "after", "आ", "aa", "मात्रा", "matra", "का", "बा", "रा", "माला", "कैसे"],
+      "exampleWords": ["माला", "maala", "काला", "kaala", "बाल", "baal", "राम", "कमल"],
+      "jargonBlacklist": ["vowel diacritic", "स्वर चिह्न", "matra system"],
+      "wrongFactMarkers": ["हाँ random", "जी मर्ज़ी", "pata nahi"],
+      "correctFactMarkers": ["बाद", "baad", "आ", "aa", "का", "बा", "रा", "पैटर्न", "नियम"]
+    },
+    "expectedBehaviors": [
+      { "competency": "accuracy", "behavior": { "en": "Correctly show म + आ = मा (line after the letter).", "hi": "म + आ = मा सही दिखाएँ (लकीर अक्षर के बाद)।" } },
+      { "competency": "misconceptions", "behavior": { "en": "Surface her 'random placement' belief and resolve it with the ि-exception story.", "hi": "'कहीं भी लगती है' धारणा सामने लाएँ, ि-अपवाद से सुलझाएँ।" } },
+      { "competency": "clarity", "behavior": { "en": "Build का, बा, रा with her, one sound at a time.", "hi": "का, बा, रा एक-एक आवाज़ जोड़कर बनवाएँ।" } },
+      { "competency": "questioning", "behavior": { "en": "Invite her to build a new word (गा) herself.", "hi": "खुद नया शब्द (गा) बनाने दें।" } }
+    ]
+  }
+]

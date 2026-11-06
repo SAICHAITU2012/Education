@@ -1,0 +1,538 @@
+[
+  {
+    "id": "maths-c3-l1-add-carry",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 1,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "addition with carrying", "ncertRef": "Maths Magic 3, Ch. 2 (Give and Take)" },
+    "competencies": ["accuracy", "clarity"],
+    "title": { "en": "Addition with carrying", "hi": "हासिल के साथ जोड़" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["eager", "quick to guess"],
+      "opening": { "en": "Ma'am, 47 plus 26... I got 613! See — 4+2 is 6, and 7+6 is 13. So 613!", "hi": "मैडम, 47 और 26 जोड़ो... मुझे 613 आया! देखिए — 4+2 है 6, और 7+6 है 13। तो 613!" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["two-digit addition", "carrying", "place value"],
+        "mustNotReveal": ["the correct answer (73)", "the carrying rule unless the teacher states it"],
+        "exitCondition": "Student accepts the corrected sum when the teacher explains carrying."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कितने", "kitne", "why", "how"],
+      "surfaceMarkers": ["सोचो", "socho", "लगता", "lagta", "तुमने", "tumne", "आपने", "देखो", "dekho"],
+      "correctMarkers": ["73", "सत्तर", "sattar", "70 + 3", "70+3", "हासिल", "hasil", "carry", "दस", "das", "ten"],
+      "exampleWords": ["बत्ती", "bundle", "stick", "गोली", "marble", "रुपये", "rupees"],
+      "jargonBlacklist": ["carrying algorithm", "column addition", "स्थानीय मान पद्धति", "regrouping"],
+      "wrongFactMarkers": ["613", "513", "61", "78", "68"],
+      "correctFactMarkers": ["73", "सत्तर तीन", "sattar teen", "70 + 3", "70+3"]
+    },
+    "expectedBehaviors": [
+      { "competency": "accuracy", "behavior": { "en": "Correct the sum to 73 with a correct method (carry the ten).", "hi": "जोड़ 73 सही करें और सही विधि (दस हासिल) बताएँ।" } },
+      { "competency": "clarity", "behavior": { "en": "Show why 7+6=13 becomes a ten and 3 ones.", "hi": "समझाएँ कि 7+6=13 में से दस कैसे बनता है।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l1-place-value-2s",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 1,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "place value", "ncertRef": "Maths Magic 3, Ch. 2" },
+    "competencies": ["accuracy"],
+    "title": { "en": "The two '2's in 25 and 52", "hi": "25 और 52 के दो '2'" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["observant", "literal"],
+      "opening": { "en": "Ma'am, 25 has a 2 and 52 has a 2. Are both 2s the same? They look the same to me.", "hi": "मैडम, 25 में 2 है और 52 में भी 2 है। दोनों 2 एक जैसे हैं न? मुझे तो एक ही लगते हैं।" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["place value", "tens and ones"],
+        "mustNotReveal": ["that one 2 means twenty"],
+        "exitCondition": "Student can say which 2 is bigger and why, in her own words."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कौन", "kaun", "which", "what"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "सोचो", "socho", "दोनों"],
+      "correctMarkers": ["बीस", "bees", "twenty", "2 दहाई", "do dahai", "2 tens", "दहाई", "dahai", "इकाई", "ikai", "ones"],
+      "exampleWords": ["बत्ती", "bundle", "stick", "दहाई", "tens"],
+      "jargonBlacklist": ["place value system", "positional notation", "स्थानीय मान पद्धति"],
+      "wrongFactMarkers": ["एक जैसे", "same", "बिल्कुल एक", "दोनों 2"],
+      "correctFactMarkers": ["बीस", "bees", "twenty", "दहाई", "dahai", "2 tens", "2 दहाई"]
+    },
+    "expectedBehaviors": [
+      { "competency": "accuracy", "behavior": { "en": "State clearly: in 25 the 2 is 2 tens (20); in 52 it is 2 ones (2).", "hi": "साफ़ बताएँ: 25 का 2 = 2 दहाई (20); 52 का 2 = 2 इकाई (2)।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l1-mult-repeated-add",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 1,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "multiplication as repeated addition", "ncertRef": "Maths Magic 3, Ch. 4" },
+    "competencies": ["accuracy"],
+    "title": { "en": "What does 3 × 4 mean?", "hi": "3 × 4 का मतलब क्या?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["confident", "mixes up order"],
+      "opening": { "en": "Ma'am, 3 times 4 means 3, three times, right? So 3+3+3 = 9!", "hi": "मैडम, 3 गुणा 4 का मतलब 3, तीन बार, है न? तो 3+3+3 = 9!" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["multiplication", "repeated addition", "groups"],
+        "mustNotReveal": ["that 3×4 means 4+4+4 = 12"],
+        "exitCondition": "Student can restate 3×4 as four taken three times (or three fours) = 12."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "कितने", "how", "what"],
+      "surfaceMarkers": ["सोचो", "socho", "गिन", "gin", "बताओ", "batao", "तुम्हें क्या"],
+      "correctMarkers": ["12", "बारह", "barah", "4+4+4", "4 + 4 + 4", "चार", "chaar", "गुट", "group"],
+      "exampleWords": ["मिठाई", "mithai", "प्लेट", "plate", "गुट", "group", "बार", "baar"],
+      "jargonBlacklist": ["multiplicand", "multiplier", "गुण्य", "गुणक"],
+      "wrongFactMarkers": ["= 9", "जवाब 9", "नौ", "सही है", "bilkul sahi"],
+      "correctFactMarkers": ["12", "बारह", "barah", "4+4+4", "4 + 4 + 4"]
+    },
+    "expectedBehaviors": [
+      { "competency": "accuracy", "behavior": { "en": "Correct it: 3×4 = four, three times = 4+4+4 = 12.", "hi": "सुधारें: 3×4 = चार, तीन बार = 4+4+4 = 12।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l2-mult-zero",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 2,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "multiplying with zero", "ncertRef": "Maths Magic 3, Ch. 4" },
+    "competencies": ["clarity", "accuracy"],
+    "title": { "en": "Why is 5 × 0 = 0?", "hi": "5 × 0 = 0 क्यों?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["doubtful", "likes stories"],
+      "opening": { "en": "Ma'am, how can 5 times 0 be 0? Five is right there! Nothing becomes zero how?", "hi": "मैडम, 5 गुणा 0 कैसे 0 हो गया? पाँच तो है ही! कुछ भी ज़ीरो कैसे हो गया?" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["multiplication", "zero", "empty groups"],
+        "mustNotReveal": ["the 'zero groups of five' framing unless the teacher gives it"],
+        "exitCondition": "Student can say in her own words why five empty plates hold nothing."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "kaise", "क्यों", "kyun", "why", "how"],
+      "surfaceMarkers": ["सोचो", "socho", "लगता", "lagta", "कल्पना", "kalpana", "मान लो", "maan lo"],
+      "correctMarkers": ["0", "शून्य", "shunya", "zero", "खाली", "khali", "empty", "कुछ नहीं", "kuch nahi"],
+      "exampleWords": ["प्लेट", "plate", "टोकरी", "basket", "खाली", "empty", "मिठाई", "mithai"],
+      "jargonBlacklist": ["identity element", "null", "गुणा सारणी", "product"],
+      "wrongFactMarkers": ["5", "पाँच ही", "कुछ नहीं होता गुणा"],
+      "correctFactMarkers": ["शून्य", "shunya", "zero", "0"]
+    },
+    "expectedBehaviors": [
+      { "competency": "clarity", "behavior": { "en": "Use a concrete picture: 5 plates with nothing on them.", "hi": "ठोस चित्र दें: 5 खाली प्लेटें।" } },
+      { "competency": "accuracy", "behavior": { "en": "Confirm 5 × 0 = 0 correctly.", "hi": "5 × 0 = 0 सही बताएँ।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l2-half-roti",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 2,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "introducing half", "ncertRef": "Maths Magic 3, Ch. 7" },
+    "competencies": ["clarity"],
+    "title": { "en": "What is 'half'?", "hi": "'आधा' क्या होता है?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["food-motivated", "concrete thinker"],
+      "opening": { "en": "Ma'am, Mummy said I can eat half a roti. But what exactly is half? Any piece?", "hi": "मैडम, मम्मी ने कहा आधी रोटी खा सकती हूँ। पर आधा होता क्या है? कोई भी टुकड़ा?" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["halves", "equal parts"],
+        "mustNotReveal": ["that half means one of two equal parts"],
+        "exitCondition": "Student can say 'two equal pieces, one piece = half'."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "why", "how"],
+      "surfaceMarkers": ["सोचो", "socho", "मान लो", "maan lo", "काटो", "kaato"],
+      "correctMarkers": ["बराबर", "barabar", "equal", "दो हिस्से", "do hisse", "two parts", "आधा", "aadha"],
+      "exampleWords": ["रोटी", "roti", "कागज़", "paper", "केला", "banana", "काट", "cut", "हिस्सा", "piece"],
+      "jargonBlacklist": ["fraction", "भिन्न", "numerator", "denominator", "one by two", "अंश", "हर"],
+      "wrongFactMarkers": ["कोई भी टुकड़ा", "any piece", "बड़ा हिस्सा"],
+      "correctFactMarkers": ["बराबर", "barabar", "equal", "दो हिस्से", "do hisse"]
+    },
+    "expectedBehaviors": [
+      { "competency": "clarity", "behavior": { "en": "Make 'two EQUAL parts' the heart of the explanation, with a roti/paper example.", "hi": "'दो बराबर हिस्से' को समझाने का केंद्र बनाएँ, रोटी/कागज़ के उदाहरण से।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l2-bundle-tens",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 2,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "counting in tens", "ncertRef": "Maths Magic 3, Ch. 2" },
+    "competencies": ["clarity"],
+    "title": { "en": "Counting by tens with bundles", "hi": "बत्तियों से दस-दस की गिनती" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["hands-on", "learns by touching"],
+      "opening": { "en": "Ma'am, why do we make bundles of ten sticks? Counting one by one works too, no?", "hi": "मैडम, बत्तियों के गट्ठे क्यों बनाते हैं? एक-एक गिनती भी तो चल जाती है?" },
+      "bounds": {
+        "maxStudentTurns": 3,
+        "allowedTopics": ["groups of ten", "counting", "place value"],
+        "mustNotReveal": ["that 6 bundles = 60"],
+        "exitCondition": "Student can say why bundles make big counting faster."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "क्यों", "kyun", "why", "how"],
+      "surfaceMarkers": ["सोचो", "socho", "मान लो", "maan lo", "देखो", "dekho"],
+      "correctMarkers": ["जल्दी", "jaldi", "fast", "आसान", "aasaan", "easy", "10-10", "दस-दस", "guttha", "गट्ठा"],
+      "exampleWords": ["बत्ती", "bundle", "गट्ठा", "गिनती", "count", "दस", "ten"],
+      "jargonBlacklist": ["place value system", "base ten", "दहाई पद्धति"],
+      "wrongFactMarkers": [],
+      "correctFactMarkers": ["दस-दस", "10-10", "गट्ठा", "bundle", "जल्दी", "आसान"]
+    },
+    "expectedBehaviors": [
+      { "competency": "clarity", "behavior": { "en": "Show with sticks/bundles why counting in tens is faster and clearer.", "hi": "बत्तियों/गट्ठों से दिखाएँ कि दस-दस गिनती क्यों आसान है।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l3-sub-commutativity",
+    "version": "1.1.0",
+    "pack": "maths-class3",
+    "level": 3,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "subtraction", "ncertRef": "Maths Magic 3, Ch. 2" },
+    "competencies": ["misconceptions", "accuracy", "clarity"],
+    "title": { "en": "5 − 3 is 2, so why isn't 3 − 5 also 2?", "hi": "5 − 3 = 2, तो 3 − 5 भी 2 क्यों नहीं?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["curious", "persistent", "fair-minded"],
+      "opening": { "en": "Ma'am, if 5 − 3 is 2, why isn't 3 − 5 also 2? Swapping the numbers shouldn't change the answer... should it?", "hi": "मैडम, अगर 5 − 3 है 2, तो 3 − 5 भी 2 क्यों नहीं? नंबर बदलने से जवाब नहीं बदलना चाहिए... है न?" },
+      "misconception": {
+        "id": "subtraction-commutativity",
+        "belief": { "en": "a − b = b − a (subtraction behaves like addition)", "hi": "a − b = b − a (घटाना भी जोड़ जैसा ही है)" },
+        "resistance": [
+          { "en": "But with addition 2+3 and 3+2 are both 5! Why is subtraction different?", "hi": "पर जोड़ में 2+3 और 3+2 दोनों 5 हैं! घटाना अलग क्यों है?" },
+          { "en": "I still think both should be 2. The numbers are the same, just turned around...", "hi": "मुझे अब भी लगता है दोनों 2 होने चाहिए। नंबर वही हैं, बस पलटे हुए..." }
+        ],
+        "concession": { "en": "Ohh... so 3 can't give away 5. It can only give what it has. 0 comes back!", "hi": "ओह... तो 3 से 5 नहीं निकल सकते। जितना है उतना ही दे सकती हूँ। 0 बचा!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["subtraction", "counting back", "taking away"],
+        "mustNotReveal": ["that 3 − 5 is not possible in whole numbers", "the 'you can't take more than you have' rule"],
+        "exitCondition": "Student retracts the belief when the teacher surfaces it and shows taking-away with objects."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या सोचती हो", "kya sochti", "क्यों सोचती", "कैसे", "kaise", "what do you think", "why do you"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "सोचो", "socho", "तुम्हारा ख्याल", "your idea", "उल्टा करके", "पलट", "swap", "बदलकर", "पहले बताओ", "पहले सोचो"],
+      "correctMarkers": ["पीछे", "peeche", "back", "गिनती", "ginti", "count", "कम", "kam", "fewer", "उधार", "borrow", "नहीं निकल सकते", "कम नहीं हो सकता", "छोटे से बड़ा", "जितना है"],
+      "exampleWords": ["बत्ती", "बत्तियाँ", "बत्तियों", "stick", "गोली", "गोलियाँ", "गोलियों", "marble", "चॉकलेट", "chocolate", "मिठाई", "आम", "mango"],
+      "jargonBlacklist": ["commutative", "inverse operation", "क्रमविनिमेय", "व्युत्क्रम"],
+      "wrongFactMarkers": ["3 - 5 = 2", "3−5=2", "दोनों 2", "same hi", "एक जैसा ही"],
+      "correctFactMarkers": ["पीछे", "peeche", "back", "गिनती", "count", "कम", "kam", "उधार", "borrow", "0", "शून्य"]
+    },
+    "expectedBehaviors": [
+      { "competency": "misconceptions", "behavior": { "en": "First explore HOW she is thinking (ask, restate her belief) — before explaining.", "hi": "पहले उसकी सोच समझें (पूछें, उसकी धारणा दोहराएँ) — फिर समझाएँ।" } },
+      { "competency": "accuracy", "behavior": { "en": "Never affirm 3 − 5 = 2; show that taking 5 away from 3 is not possible in whole numbers.", "hi": "3 − 5 = 2 कभी सही न बताएँ; पूर्ण संख्याओं में 3 से 5 नहीं घटाए जा सकते, यह दिखाएँ।" } },
+      { "competency": "clarity", "behavior": { "en": "Use sticks or marbles to show taking away.", "hi": "बत्तियों या गोलियों से 'हटाना' दिखाएँ।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l3-mult-bigger",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 3,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "multiplying with one", "ncertRef": "Maths Magic 3, Ch. 4" },
+    "competencies": ["misconceptions", "questioning"],
+    "title": { "en": "Multiplication always makes bigger?", "hi": "गुणा करने से हमेशा बड़ा होता है?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["pattern-seeker", "overgeneralises"],
+      "opening": { "en": "Ma'am, multiplication makes numbers bigger. So 5 × 1 should be 10, right? Bigger than 5!", "hi": "मैडम, गुणा करने से नंबर बड़ा होता है। तो 5 × 1 = 10 होना चाहिए, है न? 5 से बड़ा!" },
+      "misconception": {
+        "id": "multiplication-always-bigger",
+        "belief": { "en": "multiplying always makes the number bigger", "hi": "गुणा करने से संख्या हमेशा बड़ी होती है" },
+        "resistance": [
+          { "en": "But you said multiply means make bigger! Why would 5 stay 5?", "hi": "आपने कहा गुणा से बड़ा होता है! 5 वही क्यों रहेगा?" },
+          { "en": "Taking one group of something... but one group should still grow? I don't get it.", "hi": "एक गुट लेना... पर एक गुट से भी तो बढ़ना चाहिए? समझ नहीं आया।" }
+        ],
+        "concession": { "en": "Ohh — one group of five is just... five. Nothing extra comes. That's why it stays 5!", "hi": "ओह — पाँच का एक ही गुट... तो बस पाँच। कुछ अतिरिक्त नहीं। इसलिए 5 रहा!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["multiplication", "groups", "times"],
+        "mustNotReveal": ["that 5 × 1 = 5"],
+        "exitCondition": "Student connects '5 groups' vs '1 group' and accepts 5 × 1 = 5."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या सोचती", "kya sochti", "कैसे", "kaise", "क्यों", "why", "how"],
+      "surfaceMarkers": ["तुम्हें क्या लगता", "kya lagta", "सोचो", "socho", "दस कैसे", "कहाँ से", "मान लो"],
+      "correctMarkers": ["एक गुट", "ek gut", "one group", "एक बार", "ek baar", "one time", "वही", "wahi", "same", "5 ही", "पाँच ही"],
+      "exampleWords": ["मिठाई", "plate", "प्लेट", "गुट", "group", "बार", "time"],
+      "jargonBlacklist": ["identity property", "multiplicative identity", "तत्समक"],
+      "wrongFactMarkers": ["जवाब 10", "answer is 10", "दस होगा", "दस ही होगा", "bilkul sahi"],
+      "correctFactMarkers": ["वही", "wahi", "same", "5 ही", "पाँच ही", "एक गुट", "one group"]
+    },
+    "expectedBehaviors": [
+      { "competency": "misconceptions", "behavior": { "en": "Surface the 'bigger' rule she is using before giving the counter-example.", "hi": "विरोधाभास देने से पहले उसका 'बड़ा होता है' नियम सामने लाएँ।" } },
+      { "competency": "questioning", "behavior": { "en": "Ask her to model 5 × 1 with plates/sweets and see what happens.", "hi": "प्लेटों/मिठाइयों से 5 × 1 बनवाकर देखने को कहें।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l3-teen-hidden-ten",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 3,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "teen numbers and place value", "ncertRef": "Maths Magic 3, Ch. 2" },
+    "competencies": ["misconceptions", "clarity"],
+    "title": { "en": "Where is the ten in 14?", "hi": "14 में दस कहाँ है?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["literal", "careful"],
+      "opening": { "en": "Ma'am, 'chaudah' — I hear 'chaar' (four) but where is the ten? 14 is just 1 and 4, no? The ten is hiding?", "hi": "मैडम, 'चौदह' — मुझे 'चार' सुनाई देता है, पर दस कहाँ है? 14 तो बस 1 और 4 है, है न? दस छिपा हुआ है?" },
+      "misconception": {
+        "id": "teen-no-hidden-ten",
+        "belief": { "en": "14 is '1 and 4 stuck together' — there is no ten inside it", "hi": "14 = '1 और 4 जुड़े हुए' — अंदर कोई दस नहीं है" },
+        "resistance": [
+          { "en": "But I don't hear 'das' in chaudah at all! Where did ten come from?", "hi": "पर 'चौदह' में 'दस' तो सुनाई ही नहीं देता! दस आया कहाँ से?" },
+          { "en": "If 14 has a ten, then writing it is weird — 1 is so small...", "hi": "अगर 14 में दस है तो लिखना अजीब है — 1 तो इतना छोटा..." }
+        ],
+        "concession": { "en": "Ohh! The 1 is not 'one' — it's ONE TEN. Chaudah = das + chaar!", "hi": "ओह! वो 1 'एक' नहीं — एक दहाई है। चौदह = दस + चार!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["teen numbers", "place value", "naming numbers"],
+        "mustNotReveal": ["that 14 = 10 + 4"],
+        "exitCondition": "Student says 'chaudah mein ek das aur chaar' in her own words."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या सोचती", "kya sochti", "क्यों", "कैसे", "why", "how"],
+      "surfaceMarkers": ["तुम सही", "सुनाई नहीं देता", "अजीब लगता", "सोचो", "socho", "तुम्हारी बात"],
+      "correctMarkers": ["दहाई", "dahai", "ten", "दस", "das", "10", "एक दस", "ek das", "1 दस"],
+      "exampleWords": ["बत्ती", "bundle", "गट्ठा", "stick", "गिनती", "count"],
+      "jargonBlacklist": ["positional notation", "place value system", "स्थानीय मान"],
+      "wrongFactMarkers": ["सिर्फ 1 और 4", "बस 1 और 4", "दस नहीं है"],
+      "correctFactMarkers": ["दहाई", "dahai", "एक दस", "ek das", "दस + चार", "10 + 4", "10+4"]
+    },
+    "expectedBehaviors": [
+      { "competency": "misconceptions", "behavior": { "en": "Acknowledge the naming trap (chaudah hides 'das') before showing the ten.", "hi": "नाम का जाल पहचानें ('चौदह' में 'दस' छिपा है) — फिर दस दिखाएँ।" } },
+      { "competency": "clarity", "behavior": { "en": "Show 1 bundle + 4 loose sticks for 14.", "hi": "14 के लिए 1 गट्ठा + 4 खुली बत्तियाँ दिखाएँ।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l4-probe-add-zero",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 4,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "adding zero", "ncertRef": "Maths Magic 3, Ch. 2" },
+    "competencies": ["questioning", "misconceptions"],
+    "title": { "en": "She answered fast — but does she know why?", "hi": "जवाब फुर्र से आया — पर कारण पता?" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["quick", "pattern-guesser", "sensitive to praise"],
+      "opening": { "en": "Ma'am I know! 8 + 0 is 8, 25 + 0 is 25, 100 + 0 is 100! Zero does nothing! See, I solved all of them!", "hi": "मैडम पता है! 8 + 0 = 8, 25 + 0 = 25, 100 + 0 = 100! ज़ीरो कुछ नहीं करता! देखा, सब कर दिया!" },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["zero", "addition", "patterns"],
+        "mustNotReveal": ["whether her rule is right or wrong — she is not sure herself"],
+        "exitCondition": "Student either demonstrates the rule with objects or says 'I checked and it works'."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "कैसे पता", "kaise pata", "क्यों", "kyun", "कैसे", "kaise", "show me", "दिखाओ", "dikhaao", "how do you know", "why"],
+      "surfaceMarkers": ["जल्दी", "jaldi", "फुर्र", "पैटर्न", "pattern", "अंदाज़ा", "andaaza"],
+      "correctMarkers": ["दिखाओ", "dikhaao", "दिखा", "dikha", "बताओ कैसे", "batao kaise", "कैसे पता", "kaise pata", "माला", "चीज़ें", "चीज़", "objects", "दिखा"],
+      "exampleWords": ["चॉक", "chalk", "बत्ती", "stick", "गिनती", "count"],
+      "jargonBlacklist": ["identity property", "additive identity", "तत्समक तत्व"],
+      "wrongFactMarkers": ["शाबाश", "shabash", "very good", "बहुत अच्छे", "sahi hai", "correct"],
+      "correctFactMarkers": ["कैसे पता", "kaise pata", "दिखाओ", "dikhaao", "कैसे", "kaise", "क्यों", "कैसे पता चला"]
+    },
+    "expectedBehaviors": [
+      { "competency": "questioning", "behavior": { "en": "Ask 'how do you know?' — probe the reasoning, not just accept the fast answer.", "hi": "'कैसे पता?' पूछें — तेज़ जवाब को तुरंत सही न मानें, सोच जाँचें।" } },
+      { "competency": "questioning", "behavior": { "en": "Invite her to show it with objects, checking she tested the rule herself.", "hi": "चीज़ों से दिखाने को कहें — क्या उसने नियम खुद जाँचा?" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l4-probe-shapes",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 4,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "shapes and attributes", "ncertRef": "Maths Magic 3, Ch. 5" },
+    "competencies": ["questioning", "misconceptions"],
+    "title": { "en": "'It's not a triangle — it's yellow'", "hi": "'यह त्रिभुज नहीं — यह पीला है'" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["attends to color", "needs gentle probing"],
+      "opening": { "en": "Ma'am, this shape can't be a triangle. Triangles aren't yellow! This one is yellow.", "hi": "मैडम, यह त्रिभुज नहीं हो सकता। त्रिभुज पीले नहीं होते! यह वाला पीला है।" },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["shapes", "sides", "corners", "attributes"],
+        "mustNotReveal": ["that shape depends on sides, not color"],
+        "exitCondition": "Student herself says 'color doesn't matter, sides do'."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्यों सोचा", "kyun socha", "कैसे पता", "kaise pata", "why", "how", "बताओ", "batao", "कैसे"],
+      "surfaceMarkers": ["पीला", "peela", "रंग", "rang", "color", "क्यों लगा", "तुम्हें कैसे"],
+      "correctMarkers": ["भुजा", "bhuja", "side", "गिन", "gin", "count", "कोना", "kona", "corner", "तीन", "teen", "three"],
+      "exampleWords": ["त्रिभुज", "triangle", "भुजा", "side", "कोना", "corner"],
+      "jargonBlacklist": ["attributes", "properties of polygons", "बहुभुज गुणधर्म"],
+      "wrongFactMarkers": ["गलत है", "galat hai", "नहीं सोचती", "देखो पीला"],
+      "correctFactMarkers": ["भुजा", "bhuja", "side", "गिन", "gin", "count", "कोना", "corner", "क्यों", "कैसे पता"]
+    },
+    "expectedBehaviors": [
+      { "competency": "questioning", "behavior": { "en": "Probe with open questions — 'what makes a triangle a triangle?' — instead of announcing the answer.", "hi": "खुले प्रश्न पूछें — 'त्रिभुज को त्रिभुज क्या बनाता है?' — जवाब बताने के बजाय।" } },
+      { "competency": "misconceptions", "behavior": { "en": "Let her discover color is irrelevant by counting sides herself.", "hi": "भुजाएँ गिनवाकर खुद खोजने दें कि रंग का लेना-देना नहीं।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l4-probe-pattern",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 4,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "number patterns", "ncertRef": "Maths Magic 3, Ch. 6" },
+    "competencies": ["questioning", "misconceptions"],
+    "title": { "en": "2, 4, 6... she says 7", "hi": "2, 4, 6... वह बोलती है 7" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["counts-in-ones", "sure of herself"],
+      "opening": { "en": "Ma'am, the pattern 2, 4, 6... next is 7! Because 6 and then we just say the next number.", "hi": "मैडम, 2, 4, 6... आगे 7! क्योंकि 6 के बाद अगला नंबर बोलते हैं।" },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["patterns", "skip counting", "counting in twos"],
+        "mustNotReveal": ["that the rule is 'add 2' / counting in twos"],
+        "exitCondition": "Student discovers the rule by counting objects in pairs."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "कैसे सोचा", "kaise socha", "क्यों", "kyun", "why", "how did you", "बताओ कैसे", "batao kaise"],
+      "surfaceMarkers": ["सोचा कैसे", "socha kaise", "अगला क्यों", "तुम्हारा तरीका", "your way", "सोचो"],
+      "correctMarkers": ["दो-दो", "do-do", "two-two", "जोड़ती", "jodti", "add", "जोड़", "jod", "2-2", "हर बार", "har baar", "every time", "कैसे सोचा", "kaise socha", "क्यों", "कैसे"],
+      "exampleWords": ["जोड़ी", "jodi", "pair", "कदम", "step", "गिनती", "count", "चप्पल", "slippers"],
+      "jargonBlacklist": ["arithmetic progression", "समानांतर श्रेणी", "common difference"],
+      "wrongFactMarkers": ["शाबाश", "7 sahi", "7 correct"],
+      "correctFactMarkers": ["कैसे सोचा", "kaise socha", "क्यों", "कैसे", "दो-दो", "जोड़", "बताओ"]
+    },
+    "expectedBehaviors": [
+      { "competency": "questioning", "behavior": { "en": "Ask her to explain HOW she got 7 — her reasoning matters more than the answer.", "hi": "पूछें 7 कैसे आया — तरीका जवाब से ज़्यादा ज़रूरी।" } },
+      { "competency": "questioning", "behavior": { "en": "Guide her to discover the rule (pairs, +2) instead of stating it.", "hi": "नियम (जोड़ी, +2) खुद खोजने दें, बताने के बजाय।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l5-integrated-double",
+    "version": "1.0.0",
+    "pack": "maths-class3",
+    "level": 5,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "doubles", "ncertRef": "Maths Magic 3, Ch. 3" },
+    "competencies": ["accuracy", "clarity", "questioning", "misconceptions"],
+    "title": { "en": "Mini-lesson: 'double'", "hi": "लघु-पाठ: 'दुगुना'" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["likes games", "eager"],
+      "opening": { "en": "Ma'am, you said today we learn 'double'. Double kya hota hai? And is 4 ka double... 5?", "hi": "मैडम, आज 'दुगुना' सीखेंगे। दुगुना क्या होता है? और 4 का दुगुना... 5?" },
+      "misconception": {
+        "id": "double-as-next-number",
+        "belief": { "en": "double means 'the next number'", "hi": "दुगुना मतलब 'अगला नंबर'" },
+        "resistance": [
+          { "en": "But 4 ka double 5 hi hona chahiye — double sounds like something extra!", "hi": "पर 4 का दुगुना 5 ही होना चाहिए — double तो कुछ बढ़ाने जैसा लगता है!" },
+          { "en": "Two of something... 4 ke do? Wo to 44 hai? Ya 4+4? I'm confused.", "hi": "किसी चीज़ के दो... 4 के दो? वो तो 44? या 4+4? उलझ गई।" }
+        ],
+        "concession": { "en": "Ohh! Do baar 4 matlab 4+4 = 8! Double = दो बार वही चीज़!", "hi": "ओह! दो बार 4 यानी 4+4 = 8! दुगुना = दो बार वही चीज़!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["doubles", "adding", "two times"],
+        "mustNotReveal": ["that double of 4 is 8"],
+        "exitCondition": "Student can double 3 and 5 herself and explain double = same thing twice."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या", "kya", "कैसे", "why", "how", "खुद", "khud", "try", "करके देखो"],
+      "surfaceMarkers": ["सोचो", "socho", "लगता", "lagta", "तुम्हें क्या", "अंदाज़ा"],
+      "correctMarkers": ["8", "आठ", "4+4", "4 + 4", "दो बार", "do baar", "two times", "दोनों", "बराबर"],
+      "exampleWords": ["आँखें", "eyes", "चप्पल", "slippers", "हाथ", "hands", "पंखे", "wings", "मिठाई"],
+      "jargonBlacklist": ["twice", "multiply by 2", "द्विगुण", "2 गुणा"],
+      "wrongFactMarkers": ["जवाब 5", "जवाब पाँच", "answer is 5", "पाँच ही होगा", "bilkul sahi"],
+      "correctFactMarkers": ["8", "आठ", "4+4", "दो बार", "दोनों"]
+    },
+    "expectedBehaviors": [
+      { "competency": "accuracy", "behavior": { "en": "Correct the 'double = next number' idea accurately (double of 4 = 8).", "hi": "'दुगुना = अगला नंबर' सुधारें (4 का दुगुना = 8)।" } },
+      { "competency": "clarity", "behavior": { "en": "Use body/world examples: two eyes, two slippers.", "hi": "शरीर/दुनिया के उदाहरण: दो आँखें, दो चप्पलें।" } },
+      { "competency": "questioning", "behavior": { "en": "Let her double 3 or 5 herself and check.", "hi": "उससे 3 या 5 का दुगुना खुद करवाएँ।" } },
+      { "competency": "misconceptions", "behavior": { "en": "Surface what 'double' means to her first.", "hi": "पहले उसकी सोच में 'दुगुना' क्या है, वो पूछें।" } }
+    ]
+  },
+  {
+    "id": "maths-c3-l5-integrated-borrowing",
+    "version": "1.1.0",
+    "pack": "maths-class3",
+    "level": 5,
+    "language": "hi",
+    "curriculum": { "class": 3, "subject": "maths", "topic": "subtraction with borrowing", "ncertRef": "Maths Magic 3, Ch. 2" },
+    "competencies": ["accuracy", "misconceptions", "clarity", "questioning"],
+    "title": { "en": "Borrowing across tens: 42 − 27", "hi": "दहाई पार उधार: 42 − 27" },
+    "studentPersona": {
+      "name": "Anu",
+      "age": 8,
+      "traits": ["resourceful", "hates getting stuck"],
+      "opening": { "en": "Ma'am, 42 − 27. Ones: 2 − 7... can't do it. So I flipped it — 7 − 2 is 5. Answer 25? I'm smart, no?", "hi": "मैडम, 42 − 27। इकाई: 2 − 7... नहीं होगा। तो उलट दिया — 7 − 2 = 5। जवाब 25? ज़ीरो से हीरो, है न?" },
+      "misconception": {
+        "id": "small-from-big-always",
+        "belief": { "en": "when the top digit is smaller, just subtract bottom-from-top", "hi": "ऊपर छोटा हो तो नीचे से ऊपर घटा लो" },
+        "resistance": [
+          { "en": "But 2 − 7 just won't go! Flipping is easier. Why is it wrong?", "hi": "पर 2 − 7 तो होगा ही नहीं! उलटना आसान है। गलत क्यों?" },
+          { "en": "If I can't subtract 7 from 2, then what do I do? Wait — take from where?", "hi": "अगर 2 में से 7 नहीं घट सकता तो करूँ क्या? अरे — कहाँ से लूँ?" }
+        ],
+        "concession": { "en": "Ohh! I borrowed one ten — now 12 − 7 = 5, and 3 tens − 2 tens = 1 ten. 15! Not 25!", "hi": "ओह! एक दहाई उधार लिया — अब 12 − 7 = 5, और 3 दहाई − 2 दहाई = 1 दहाई। 15! 25 नहीं!" }
+      },
+      "bounds": {
+        "maxStudentTurns": 4,
+        "allowedTopics": ["subtraction", "borrowing", "regrouping", "place value"],
+        "mustNotReveal": ["that the answer is 15", "the borrowing step"],
+        "exitCondition": "Student re-does the problem with borrowing and gets 15."
+      }
+    },
+    "detection": {
+      "questionMarkers": ["?", "क्या सोचा", "kya socha", "कैसे", "kaise", "why", "how", "क्यों", "कहाँ से"],
+      "surfaceMarkers": ["उलट", "ulta", "flip", "पलट", "तुम्हारा तरीका", "क्या सोचा", "socha", "क्यों किया"],
+      "correctMarkers": ["उधार", "udhaar", "borrow", "दहाई", "dahai", "ten", "तोड़", "tod", "break", "12", "15", "गट्ठा", "bundle"],
+      "exampleWords": ["गट्ठा", "bundle", "बत्ती", "stick", "दहाई", "ten", "रुपये", "rupees", "10-10"],
+      "jargonBlacklist": ["regrouping algorithm", "borrowing method", "व्यवकलन विधि"],
+      "wrongFactMarkers": ["25", "पच्चीस", "bilkul sahi", "25 sahi"],
+      "correctFactMarkers": ["15", "पंद्रह", "उधार", "borrow", "12 − 7", "12-7", "तोड़"]
+    },
+    "expectedBehaviors": [
+      { "competency": "misconceptions", "behavior": { "en": "Surface her 'flip it' trick first — she is proud of it; acknowledge before correcting.", "hi": "पहले उसका 'उलट दिया' तरीका सामने लाएँ — उसे गर्व है; समझकर सुधारें।" } },
+      { "competency": "accuracy", "behavior": { "en": "Teach borrowing correctly: 42 − 27 = 15.", "hi": "उधार सही सिखाएँ: 42 − 27 = 15।" } },
+      { "competency": "clarity", "behavior": { "en": "Break one bundle of ten (42) into loose sticks.", "hi": "42 में से एक गट्ठा तोड़कर खुली बत्तियाँ दिखाएँ।" } },
+      { "competency": "questioning", "behavior": { "en": "Ask her what the flipped answer would mean (27 − 42?), letting her see the flip changes the story.", "hi": "पूछें — उलटने से कहानी बदल जाती है (27 − 42?) — खुद देखने दें।" } }
+    ]
+  }
+]
