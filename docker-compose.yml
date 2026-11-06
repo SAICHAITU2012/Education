@@ -1,0 +1,20 @@
+# Local/staging parity: `docker compose up --build` serves the full app
+# (API + built PWA) on :8787 with the data file on a named volume.
+services:
+  abhyas:
+    build: .
+    ports:
+      - '8787:8787'
+    environment:
+      NODE_ENV: production
+      # Same-origin (the shell is served from this process) plus the dev origins.
+      ALLOWED_ORIGINS: 'http://localhost:5173,http://127.0.0.1:5173'
+      # Set these to enable cloud models; unset = deterministic mock engine.
+      # ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      # OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    volumes:
+      - abhyas-data:/data
+    restart: unless-stopped
+
+volumes:
+  abhyas-data:

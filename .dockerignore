@@ -1,0 +1,19 @@
+node_modules
+dist
+data
+.env
+.env.*
+.git
+.github
+*.log
+.DS_Store
+# generated media / submission artifacts never enter the image
+demo-assets
+submission
+pitch-deck
+abhyas-final
+landing
+docs
+tmp
+output
+backups
