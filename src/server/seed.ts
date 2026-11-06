@@ -25,7 +25,7 @@ import { loadEnvFile } from './env.js';
  * verifies evidence through the real decision engine. No personal data.
  */
 
-function mulberry32(seed: number): () => number {
+export function mulberry32(seed: number): () => number {
   let a = seed >>> 0;
   return () => {
     a |= 0;
@@ -40,7 +40,7 @@ function pick<T>(list: T[], rng: () => number, fallback: T): T {
   return list.length > 0 ? list[Math.floor(rng() * list.length)]! : fallback;
 }
 
-function makeTranscript(scenario: Scenario, quality: number, rng: () => number): Turn[] {
+export function makeTranscript(scenario: Scenario, quality: number, rng: () => number): Turn[] {
   const d = scenario.detection;
   const turns: Turn[] = [];
   const add = (text: string) => turns.push({ role: 'teacher', text, ts: Date.now() });

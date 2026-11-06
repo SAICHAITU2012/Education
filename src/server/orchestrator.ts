@@ -262,7 +262,7 @@ export class Orchestrator {
       heardCorrectly: true,
     };
 
-    const record = await this.scoreAndStore(attempt, scenario);
+    const { record, levelUp } = await this.scoreAndStore(attempt, scenario);
     session.status = 'scored';
     session.turns = turns;
     session.updatedAt = this.now().toISOString();
@@ -273,7 +273,7 @@ export class Orchestrator {
       record,
       decision: record.decision,
       state,
-      levelUp: this.lastLevelUp,
+      levelUp,
       nextScenario: selectNextScenario(this.content.scenarios, state, state.profile.currentLevel),
       verified: record.verified,
       engine: record.score.engine,
@@ -326,7 +326,7 @@ export class Orchestrator {
       }
 
       try {
-        const record = await this.scoreAndStore(
+        const { record } = await this.scoreAndStore(
           {
             ...incoming,
             id: incoming.id,
@@ -358,10 +358,11 @@ export class Orchestrator {
   /* Scoring                                                            */
   /* ------------------------------------------------------------------ */
 
-  private lastLevelUp: LevelUpResult = NO_LEVEL_UP;
-
-  private async scoreAndStore(attempt: Attempt, scenario: Scenario): Promise<AttemptRecord> {
-    this.lastLevelUp = NO_LEVEL_UP;
+  private async scoreAndStore(
+    attempt: Attempt,
+    scenario: Scenario,
+  ): Promise<{ record: AttemptRecord; levelUp: LevelUpResult }> {
+    let levelUp: LevelUpResult = NO_LEVEL_UP;
     const rubric = this.content.rubric;
     let score;
     try {
@@ -403,7 +404,7 @@ export class Orchestrator {
         (s) => s.level === scenario.level + 1 && !s.holdout,
       );
       if (hasNextLevel) {
-        this.lastLevelUp = applyLevelUp(
+        levelUp = applyLevelUp(
           next,
           scenario.level,
           rubric.decision,
@@ -413,7 +414,7 @@ export class Orchestrator {
       }
     }
     this.store.upsertTeacher(next);
-    return record;
+    return { record, levelUp };
   }
 
   /* ------------------------------------------------------------------ */

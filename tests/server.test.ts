@@ -4,6 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { getContentPack } from '../src/content/index.js';
 import type { Attempt, Turn } from '../src/core/types.js';
 import { MockClient } from '../src/llm/mock/index.js';
+import { makeTranscript, mulberry32 } from '../src/server/seed.js';
 import { createApp } from '../src/server/app.js';
 import { Store } from '../src/server/store.js';
 import type { ScoreResponse, StartSessionResponse, SyncResponse } from '../src/shared/api.js';
@@ -36,16 +37,24 @@ afterAll(async () => {
   await store.flush();
 });
 
-async function call<T>(
+async function httpCall<T>(
+  baseUrl: string,
   path: string,
   init: RequestInit & { teacher?: string } = {},
 ): Promise<{ status: number; body: T }> {
   const headers = new Headers(init.headers);
   if (init.body) headers.set('content-type', 'application/json');
   if (init.teacher) headers.set('x-teacher-id', init.teacher);
-  const response = await fetch(`${base}${path}`, { ...init, headers });
+  const response = await fetch(`${baseUrl}${path}`, { ...init, headers });
   const text = await response.text();
   return { status: response.status, body: (text ? JSON.parse(text) : null) as T };
+}
+
+async function call<T>(
+  path: string,
+  init: RequestInit & { teacher?: string } = {},
+): Promise<{ status: number; body: T }> {
+  return httpCall(base, path, init);
 }
 
 const goodTurn =
@@ -276,5 +285,133 @@ describe('HTTP API', () => {
     expect(cohort.body.k).toBe(5);
     expect(cohort.body.minTeachers).toBeGreaterThanOrEqual(3);
     expect(Array.isArray(cohort.body.cells)).toBe(true);
+  });
+});
+
+describe('concurrent scoring isolation (TD-02 regression)', () => {
+  // A second app instance whose scorer can be parked mid-flight, so two
+  // teachers' scorings interleave in a fixed order instead of relying on timing.
+  const raceStore = new Store();
+  let armed = false;
+  const parked: Array<() => void> = [];
+  const inner = new MockClient();
+  const gated = {
+    name: 'mock' as const,
+    studentTurn: (input: Parameters<typeof inner.studentTurn>[0]) => inner.studentTurn(input),
+    async scoreAttempt(input: Parameters<typeof inner.scoreAttempt>[0]) {
+      if (armed) await new Promise<void>((resolve) => parked.push(resolve));
+      return inner.scoreAttempt(input);
+    },
+  };
+  const raceApp = createApp({
+    store: raceStore,
+    content: pack,
+    llm: { client: gated, engine: 'mock', mode: 'mock', fallback: true },
+    now: () => new Date('2026-11-02T09:00:00.000Z'),
+  });
+
+  let raceServer: Server;
+  let raceBase: string;
+  const tick = () => new Promise<void>((resolve) => setTimeout(resolve, 5));
+
+  beforeAll(async () => {
+    await new Promise<void>((resolve) => {
+      raceServer = raceApp.listen(0, '127.0.0.1', () => resolve());
+    });
+    raceBase = `http://127.0.0.1:${(raceServer.address() as AddressInfo).port}`;
+  });
+
+  afterAll(async () => {
+    await new Promise<void>((resolve) => raceServer.close(() => resolve()));
+    await raceStore.flush();
+  });
+
+  it('returns each teacher their own levelUp when two scorings overlap', async () => {
+    const teacherA = 't_race_a_0000000000000000000000000001';
+    const teacherB = 't_race_b_0000000000000000000000000002';
+    for (const id of [teacherA, teacherB]) {
+      const profile = await httpCall(raceBase, `/api/teachers/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ curriculum: { class: 3, subject: 'maths' }, language: 'hi' }),
+      });
+      expect(profile.status).toBe(200);
+    }
+
+    // Teacher A earns one prior pass on an L1 scenario, so the concurrent pass
+    // below is their second distinct-scenario pass — a genuine level-up.
+    const prior = pack.scenarios.find(
+      (s) => s.curriculum.class === 3 && s.curriculum.subject === 'maths' && s.level === 1,
+    )!;
+    const priorAttempt: Attempt = {
+      id: 'a_race_prior00000000000000000000000001',
+      teacherId: teacherA,
+      scenarioId: prior.id,
+      scenarioVersion: prior.version,
+      rubricId: pack.rubric.id,
+      rubricVersion: pack.rubric.version,
+      turns: makeTranscript(prior, 0.9, mulberry32(11)),
+      mode: 'offline',
+      clientCreatedAt: '2026-11-01T10:00:00.000Z',
+      heardCorrectly: true,
+    };
+    const synced = await httpCall<SyncResponse>(raceBase, '/api/sync', {
+      method: 'POST',
+      teacher: teacherA,
+      body: JSON.stringify({ attempts: [priorAttempt] }),
+    });
+    expect(synced.status).toBe(200);
+    expect(synced.body.accepted[0]?.decision.status).toBe('pass');
+
+    // Both start sessions; the session response names the scenario it chose.
+    const startA = await httpCall<StartSessionResponse>(raceBase, '/api/sessions', {
+      method: 'POST',
+      teacher: teacherA,
+      body: JSON.stringify({ mode: 'online' }),
+    });
+    const startB = await httpCall<StartSessionResponse>(raceBase, '/api/sessions', {
+      method: 'POST',
+      teacher: teacherB,
+      body: JSON.stringify({ mode: 'online' }),
+    });
+    expect(startA.status).toBe(201);
+    expect(startB.status).toBe(201);
+    const scenarioA = startA.body.scenario;
+    const scenarioB = startB.body.scenario;
+    expect(scenarioA.id).not.toBe(prior.id); // level-up needs two distinct scenarios
+
+    // Arm the gate, park A inside its scorer, then let B join it there.
+    armed = true;
+    const pendingA = httpCall<ScoreResponse>(raceBase, `/api/sessions/${startA.body.session.id}/score`, {
+      method: 'POST',
+      teacher: teacherA,
+      body: JSON.stringify({
+        heardCorrectly: true,
+        turns: makeTranscript(scenarioA, 0.9, mulberry32(13)),
+      }),
+    });
+    while (parked.length < 1) await tick();
+    const pendingB = httpCall<ScoreResponse>(raceBase, `/api/sessions/${startB.body.session.id}/score`, {
+      method: 'POST',
+      teacher: teacherB,
+      body: JSON.stringify({
+        heardCorrectly: true,
+        turns: makeTranscript(scenarioB, 0.1, mulberry32(17)),
+      }),
+    });
+    while (parked.length < 2) await tick();
+
+    // Release both in one synchronous burst: A finishes scoring and stores its
+    // level-up, B finishes right behind it, and only then does A's response get
+    // built. With the old shared lastLevelUp field, A read B's NO_LEVEL_UP.
+    for (const release of parked.splice(0)) release();
+    armed = false;
+
+    const [resA, resB] = await Promise.all([pendingA, pendingB]);
+    expect(resA.status).toBe(200);
+    expect(resB.status).toBe(200);
+    expect(resA.body.decision.status).toBe('pass');
+    expect(resB.body.decision.status).not.toBe('pass');
+    expect(resA.body.levelUp.leveledUp).toBe(true);
+    expect(resB.body.levelUp.leveledUp).toBe(false);
   });
 });
