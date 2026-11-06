@@ -5,10 +5,12 @@ __pycache__/
 
 # runtime data (seed/synthetic/production state never enters git)
 data/
+backups/
 
 # secrets & logs
 .env
 .env.*
+!.env.example
 *.log
 .DS_Store
 

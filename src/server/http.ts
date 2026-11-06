@@ -1,6 +1,7 @@
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 import { z } from 'zod';
 import type { ApiErrorBody } from '../shared/api.js';
+import { log, scrubPath } from './logger.js';
 
 export class HttpError extends Error {
   constructor(
@@ -48,8 +49,13 @@ export function requestLogger(req: Request, res: Response, next: NextFunction): 
   const start = Date.now();
   res.on('finish', () => {
     const ms = Date.now() - start;
-    const path = req.path.replace(/\/t_[A-Za-z0-9_-]+/g, '/:teacher');
-    console.log(`${req.method} ${path} ${res.statusCode} ${ms}ms`);
+    log.info('http_request', {
+      method: req.method,
+      path: scrubPath(req.path),
+      status: res.statusCode,
+      ms,
+      requestId: res.locals.requestId ?? '',
+    });
   });
   next();
 }
@@ -87,7 +93,12 @@ export function errorHandler(
     res.status(err.status).json(body);
     return;
   }
-  console.error(`[abhyas] ${req.method} ${req.path} failed:`, err);
+  log.error('http_unhandled_error', {
+    method: req.method,
+    path: scrubPath(req.path),
+    requestId,
+    error: err instanceof Error ? (err.stack ?? err.message) : String(err),
+  });
   const body: ApiErrorBody = {
     error: { code: 'internal_error', message: 'Something went wrong. No attempt was graded.', requestId },
   };

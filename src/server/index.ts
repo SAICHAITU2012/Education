@@ -3,6 +3,7 @@ import { getContentPack } from '../content/index.js';
 import { createLlmClient, readLlmEnv } from '../llm/index.js';
 import { createApp } from './app.js';
 import { loadEnvFile } from './env.js';
+import { log } from './logger.js';
 import { Store } from './store.js';
 
 loadEnvFile();
@@ -23,10 +24,18 @@ const server = app.listen(port, () => {
   console.log(`  content: ${content.scenarios.length} scenarios · ${content.packVersion}`);
   console.log(`  data: ${dataFile}`);
   console.log('');
+  log.info('server_listening', {
+    port,
+    engine: llm.engine,
+    mode: llm.mode,
+    fallback: llm.fallback,
+    rubricVersion: content.rubric.version,
+    scenarios: content.scenarios.length,
+  });
 });
 
 async function shutdown(signal: string): Promise<void> {
-  console.log(`\n[abhyas] ${signal} received — flushing practice data…`);
+  log.info('server_shutdown', { signal });
   server.close();
   await store.flush();
   process.exit(0);

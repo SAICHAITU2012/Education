@@ -12,7 +12,8 @@
     "start": "tsx src/server/index.ts",
     "test": "vitest run",
     "calibration": "tsx tools/calibration/run.ts",
-    "seed": "tsx src/server/seed.ts"
+    "seed": "tsx src/server/seed.ts",
+    "backup": "bash scripts/backup.sh"
   },
   "dependencies": {
     "cors": "^2.8.5",

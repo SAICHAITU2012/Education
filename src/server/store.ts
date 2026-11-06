@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import type { AttemptRecord, TeacherState } from '../core/types.js';
+import { log } from './logger.js';
 
 interface DbFile {
   version: 1;
@@ -101,7 +102,7 @@ export class Store {
     if (!this.filePath) return;
     this.writeQueue = this.writeQueue
       .then(() => this.persist())
-      .catch((err) => console.error('[abhyas] store write failed:', err));
+      .catch((err) => log.error('store_write_failed', { file: this.filePath, error: String(err) }));
   }
 
   private async persist(): Promise<void> {

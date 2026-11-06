@@ -31,6 +31,7 @@ import type {
   TurnResponse,
 } from '../shared/api.js';
 import { HttpError } from './http.js';
+import { log } from './logger.js';
 import type { Store } from './store.js';
 
 const SESSION_TTL_MS = 2 * 60 * 60 * 1000;
@@ -371,7 +372,7 @@ export class Orchestrator {
     } catch (err) {
       // A cloud outage must never lose a rehearsal or block a sync. The mock
       // engine is the same contract and its output is still evidence-verified.
-      console.warn('[abhyas] scorer unavailable, using deterministic engine:', String(err).slice(0, 200));
+      log.warn('llm_scorer_fallback', { engine: 'mock', reason: String(err).slice(0, 200) });
       const raw = await this.mock.scoreAttempt({ scenario, attempt, rubric });
       score = normalizeScorerOutput(raw, scenario.competencies);
     }
