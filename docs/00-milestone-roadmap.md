@@ -7,7 +7,11 @@ channels, architecture decisions). Milestones complete on **exit-criteria
 evidence, not dates**. Implementation backlogs live under each milestone —
 see [09-technical-debt.md](09-technical-debt.md) for the current one.
 
-**Status: M0 complete · M1 approved-pending · no code changed yet.**
+**Status: M0 complete ✅ · M1 executed (2026-11-06, 7 commits: baseline, TD-02 fix
++ regression, CI, doc integrity, security hardening, Docker (smoke-tested),
+logging + backup drill — 81 tests, calibration gate PASS, restore drill
+verified) · GitHub push + branch protection pending (no `gh` CLI on this
+machine) · M2 (Postgres, auth, tenancy) not started.**
 
 ---
 

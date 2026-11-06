@@ -10,26 +10,27 @@ reliability/efficiency · **S3** hygiene.
 
 | ID | Sev | Item | Evidence | Target |
 |---|---|---|---|---|
-| TD-01 | S1 | Not a git repository — no history, no backup, no collaboration | `git status` fails | **M1** |
-| TD-02 | S1 | `Orchestrator.lastLevelUp` shared instance field → concurrent scorers return wrong levelUp payload | orchestrator.ts:361,364,406 | **M1** |
+| TD-01 | S1 | ~~Not a git repository~~ **fixed in M1** — local git history; remote push pending | `git status` previously failed | ✅ M1 |
+| TD-02 | S1 | ~~`lastLevelUp` shared instance race~~ **fixed in M1** — returns `{record, levelUp}`; regression test verified failing on old code | orchestrator.ts:361,364,406 | ✅ M1 |
 | TD-03 | S1 | No database: single JSON file, full rewrite per mutation; sessions memory-only (2 h TTL, lost on restart) | store.ts:107-120 | M2 |
 | TD-04 | S1 | No authentication: UUID-is-the-credential; possession grants read/export/delete | app.ts:247-252 | M2 |
-| TD-05 | S1 | CORS reflects any origin (`origin: true`); no helmet/CSP | app.ts:51 | **M1** |
-| TD-06 | S1 | No CI/CD | no .github/ | **M1** |
-| TD-07 | S1 | No containerisation/deploy config | no Dockerfile | **M1** |
+| TD-05 | S1 | ~~CORS reflects any origin; no helmet/CSP~~ **fixed in M1** — allowlist + security headers, dependency-free | app.ts:51 | ✅ M1 |
+| TD-06 | S1 | ~~No CI/CD~~ **fixed in M1** — GitHub Actions: test → calibration gate → build | no .github/ | ✅ M1 |
+| TD-07 | S1 | ~~No containerisation~~ **fixed in M1** — multi-stage image, non-root, healthcheck; smoke-tested via colima | no Dockerfile | ✅ M1 |
 | TD-08 | S1 | Transcripts plaintext at rest, no retention TTL, no consent capture, no access audit log | store.ts, no consent code | M2 |
-| TD-09 | S2 | Rate limits in-memory per-IP; no `trust proxy` → broken behind reverse proxy; reset on restart | http.ts:26-44 | **M1** (proxy fix) / M2 (shared store) |
+| TD-09 | S2 | Rate limits in-memory per-IP; **trust proxy fixed in M1** (`dad08b9`); shared/mutable limit store still M2 | http.ts:26-44 | M2 (shared store) |
 | TD-10 | S2 | No LLM token/cost tracking, no budget caps → unbounded spend | no usage code anywhere | M2 (ledger) / M3 (gateway) |
 | TD-11 | S2 | No streaming; blocking LLM calls, 60–90 s client waits | api.ts:130,141 | M3 |
-| TD-12 | S2 | Doc rot: README claims IndexedDB (code: localStorage); roadmap claims holdouts exist (code: none) | README.md:27, offline.ts:25, packs | **M1** |
+| TD-12 | S2 | ~~Doc rot~~ **fixed in M1** — README IndexedDB + test count, 04-roadmap holdout claim | README.md:27, offline.ts:25, packs | ✅ M1 |
 | TD-13 | S2 | Zero `holdout: true` scenarios → no transfer-testing instrument | grep all 6 packs | M3/M5 |
-| TD-14 | S2 | No observability: console.log only; no error tracking, metrics, alerting | http.ts:47-55 | **M1** (structured logs) / M2 (Sentry+OTel) |
+| TD-14 | S2 | ~~No observability~~ **partially fixed in M1** — structured JSON logs + events; error tracking/metrics/alerting still M2 | http.ts:47-55 | ✅ partial M1 |
 | TD-15 | S2 | Calibration goldens authored against mock's own markers — validates pipeline, not validity | tools/calibration/golden.json | M4 |
 | TD-16 | S3 | i18n: Hindi UI ~50%, silent English fallback | i18n.ts:469 | M3/M5 |
 | TD-17 | S3 | Accessibility: no aria on Cohort/Mastery/Feedback; no audit | web/screens | M5 |
 | TD-18 | S3 | Seed + test residue mixed with production data file | data/abhyas.json (42 teachers) | M2 |
 | TD-19 | S3 | No E2E/load tests | tests/ = unit+integration only | M1 (smoke) → M5 (full) |
 | TD-20 | S3 | `.env` plaintext secrets; custom env loader fine but no vault story | env.ts | M2 |
+| TD-21 | S3 | Docker runtime image carries devDependencies (server runs via tsx from source) | Dockerfile note | M2 (precompile server) |
 
 ## 2. Prioritised backlog
 
