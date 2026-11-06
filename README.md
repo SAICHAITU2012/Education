@@ -24,7 +24,7 @@ Teacher speaks ──▶ AI student pushes back ──▶ separate AI scores wit
 | **Code decides** | Weighted scoring, floors, thresholds and level-ups are pure functions (`src/core/scoring.ts`) — same attempt, same result, online or offline. |
 | **Private by design** | Device-generated pseudonymous ids, transcript-review gate before scoring, k-anonymised cohort endpoint (n ≥ 5), one-click data export + delete. Audio never leaves the device — only the reviewed transcript is sent. |
 | **Model-agnostic** | `LlmClient` interface with deterministic mock (default, always works), OpenAI-compatible and Anthropic adapters. Cloud failure → deterministic fallback; the engine used is recorded on every score. |
-| **Offline-first** | Airplane-mode in the app: attempts queue in IndexedDB, scored by the on-device engine, synced idempotently later, then verified. |
+| **Offline-first** | Airplane-mode in the app: attempts queue in a capped localStorage queue, scored by the on-device engine, synced idempotently later, then verified. |
 
 ## Quick start
 
@@ -42,7 +42,7 @@ text-to-speech; everything else works on any browser with typing.
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server + web (proxied) |
-| `npm test` | 72 unit/integration tests (engine, evidence, isolation, HTTP API, offline sync) |
+| `npm test` | 73 unit/integration tests (engine, evidence, isolation, HTTP API, offline sync, concurrent-scoring isolation) |
 | `npm run calibration` | **AI vs experts**: scores 8 expert-labelled golden attempts through the full pipeline and reports agreement |
 | `npm run calibration -- --gate` | CI gate: exit 1 unless MAE ≤ 0.25 and decision agreement ≥ 70% |
 | `npm run seed` | Populate anonymised synthetic cohort data for the trends dashboard |
@@ -95,7 +95,12 @@ same architecture. See `docs/04-roadmap.md`.
 
 ## Key docs
 
+- [Master roadmap](docs/00-milestone-roadmap.md) — M0–M7 milestone plan with exit criteria (execution source of truth)
 - [Research findings](docs/01-research-findings.md) — what Mursion/TeachFX/Edthena and the LLM-judge literature taught us
 - [Architecture](docs/02-architecture.md) — contracts, isolation, offline sync, privacy engineering
 - [Rubric governance](docs/03-rubric-governance.md) — NPST/TEACH mapping, weights, thresholds, versioning
 - [Roadmap](docs/04-roadmap.md) — validation plan, pilot design, scale path
+- [Production plan](docs/06-production-plan.md) — strategy: positioning, cost model, go-to-market
+- [Current-state audit](docs/07-current-state-audit.md) — M0 evidence-backed baseline (2026-11-06)
+- [Verified architecture](docs/08-architecture.md) — as-built system + production target
+- [Technical debt](docs/09-technical-debt.md) — TD register and prioritised backlog

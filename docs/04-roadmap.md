@@ -17,7 +17,7 @@ the AI against expert labels.
 | Speech accuracy | Browser STT (hi-IN) | WER by region and noise level (Sarvam/AI4Bharat), teachers' "heard me correctly" rate |
 | Retry rate | Instrumented in every decision | Target: falling within 3 attempts per scenario |
 | Provisional rate | Reported by calibration | < 10% of attempts; higher ⇒ audio/coverage problem, not a teacher problem |
-| Pre→post transfer | Holdout scenarios exist (`holdout: true`) and are excluded from rotation | Pre-test → practice → post-test on unseen scenarios, expert-blinded |
+| Pre→post transfer | Schema, selection and level-up logic all honour `holdout: true`, but no pack marks one yet (M0 audit, 2026-11-06) — packs gain holdout items before the pilot | Pre-test → practice → post-test on unseen scenarios, expert-blinded |
 
 ## Phase 1 — Expert validation (weeks 1–4)
 
